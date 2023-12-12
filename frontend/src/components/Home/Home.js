@@ -4,10 +4,11 @@ import PrimaryButton from '../PrimaryButton/PrimaryButton'
 
 const Home = ({navigate}) => {
     const navigateToLogin = () => {
-        // TODO: Add navigation to login page
+        navigate("/login")
     }
 
     const navigateToSignUp = () => {
+        navigate("/signup")
         // TODO: Add navigation to signup page
     }
     return (
