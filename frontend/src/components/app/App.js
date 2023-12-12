@@ -1,6 +1,7 @@
 import './App.css';
 import LoginForm from '../auth/LoginForm'
 import SignUpForm from '../user/SignUpForm'
+import Home from '../Home/Home'
 import React, { useState } from 'react';
 import {
   useNavigate,
@@ -10,7 +11,7 @@ import {
 
 const App = () => {
     return (
-<h1></h1>
+      <Home navigate={useNavigate()}/>
     );
 }
 
