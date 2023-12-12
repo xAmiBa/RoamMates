@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.8
+
+    - name: Install Backend Dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run Backend Tests
+      run: python -m unittest discover
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+
+    - name: Install Frontend Dependencies
+      run: npm install
+      working-directory: frontend   # Change 'frontend' to your actual frontend directory
+
+    - name: Build React App
+      run: npm run build
+      working-directory: frontend   # Change 'frontend' to your actual frontend directory
+
+    - name: Run Frontend Tests
+      run: npm test
+      working-directory: frontend   # Change 'frontend' to your actual frontend directory
