@@ -36,3 +36,7 @@ form{
     align-items: center;
     justify-content: center;
 }
+body{
+    background-image: url("../../../public/map_crop.jpeg");;
+
+}
