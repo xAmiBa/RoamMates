@@ -39,7 +39,7 @@ jobs:
             node-version: 14
             
         - name: Change to the Frontend Directory
-          run: cd RoamMates/frontend/
+          run: cd frontend
 
         - name: Install Frontend Dependencies
           run: |
@@ -59,6 +59,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
+
+      - name: Change to the Tests Directory
+        run: cd tests
           
       - name: Set up Selenium and ChromeDriver
         run: |
@@ -69,6 +72,7 @@ jobs:
           sudo mv chromedriver /usr/local/bin
           rm chromedriver_linux64.zip
           pip install selenium
+          
       - name: Run Selenium Tests
         run: |
-          python tests/selenium_tests.py
+          python selenium_tests.py
