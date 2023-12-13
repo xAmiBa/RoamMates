@@ -64,6 +64,9 @@ const LoginPage = ({navigate}) => {
                 <div className="button-container">
                 <PrimaryButton text="Login"/>
                 </div>
+                <p>
+                    <a href="/signup">Don't have an account? Go to Sign Up.</a>
+                </p>
             </form>
 
         </div>

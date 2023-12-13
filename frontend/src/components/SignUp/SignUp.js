@@ -1,6 +1,7 @@
 import { useState } from "react"
 import PrimaryButton from "../PrimaryButton/PrimaryButton"
 import FormField from "../FormField/FormField"
+import '../app/App.css'
 
 const SignUp = ({navigate}) => {
 
@@ -28,7 +29,6 @@ const SignUp = ({navigate}) => {
             required: true, 
             pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
             errorMessage: "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!"
-
         },
         {
             id: 3, 
@@ -64,7 +64,7 @@ const SignUp = ({navigate}) => {
 
     return(
         <div className="container primary-background-colour">
-            <h1 className="primary-heading">Login</h1>
+            <h1 className="primary-heading">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 {form.map((input) => (
                     <FormField 
@@ -77,6 +77,9 @@ const SignUp = ({navigate}) => {
                 <div className="button-container">
                 <PrimaryButton text="Sign Up"/>
                 </div>
+                <p>
+                    <a href="/login">Already have an account? Go to Log In.</a>
+                </p>
             </form>
 
         </div>        
