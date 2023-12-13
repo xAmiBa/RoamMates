@@ -5,11 +5,19 @@ import './LoginPage.css'
 import '../app/App.css'
 
 const LoginPage = ({navigate}) => {
+    /* Component to display login page.
+    Children: 
+        - FormField component
+        - Primary Button component
+    */
+
+    // Sets up and inputs ValueState
     const [values, setValues] = useState({
         email: '',
         password: '',
     })
 
+    // List of objects representing FormField   
     const form = [
         {
             id: 1, 
@@ -31,6 +39,7 @@ const LoginPage = ({navigate}) => {
         }
     ]
 
+    // Function that handles input value changes
     const onChange = (event) => {
         setValues({ ...values, [event.target.name]: event.target.value });
     }

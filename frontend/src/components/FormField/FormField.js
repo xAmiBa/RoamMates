@@ -9,7 +9,6 @@ const FormField = (props) => {
 
     const handleFocus = (event) => {
         setFocused(true)
-        console.log(event.validity.valid) 
     }
 
     return(

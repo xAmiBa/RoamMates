@@ -13,3 +13,11 @@ input{display: block;
 .form-label{
     margin-bottom: 20px;
 }
+span{
+    display: none;
+    margin-top: 15px;    
+    color: red;
+}
+input:invalid[focused="true"] ~ span{
+    display: block;
+}
