@@ -1,6 +1,6 @@
 from lib.Preference import Preference
 
-def test_request_initiation():
+def test_preference_initiation():
     preference = Preference(1, 1, "[18,24]", "Male", "Europe", "Summer", "Beach")
     assert preference.id == 1
     assert preference.user_id == 1
