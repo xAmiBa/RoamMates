@@ -16,7 +16,7 @@ const Home = ({ navigate }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container primary-background-colour">
       <h1 className="primary-heading" data-cy="head-content">Roam Mates</h1>
       <PrimaryButton text="Login" onClick={navigateToLogin} />
       <PrimaryButton text="Sign Up" onClick={navigateToSignUp} />
