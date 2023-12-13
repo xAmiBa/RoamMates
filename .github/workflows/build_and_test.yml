@@ -39,7 +39,7 @@ jobs:
             node-version: 14
             
         - name: Change to the Frontend Directory
-          run: cd frontend
+          run: cd RoamMates/frontend/
 
         - name: Install Frontend Dependencies
           run: |
