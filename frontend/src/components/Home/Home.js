@@ -4,9 +4,10 @@ import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import { descirpiotn } from "../../constants/description";
 
 const Home = ({ navigate }) => {
-  /* Component to display non-authenticated home page.
-    Contains navigation to login and signup page.
-    */
+  /* 
+  Component to display non-authenticated home page.
+  Contains navigation to login and signup page.
+  */
 
   const navigateToLogin = () => {
     navigate("/login");
@@ -18,7 +19,9 @@ const Home = ({ navigate }) => {
 
   return (
     <div className="container primary-background-colour">
-      <h1 className="primary-heading" data-cy="head-content">Roam Mates</h1>
+      <h1 className="primary-heading" data-cy="head-content">
+        Roam Mates
+      </h1>
       <p className="description">{descirpiotn}</p>
       <PrimaryButton text="Login" onClick={navigateToLogin} />
       <PrimaryButton text="Sign Up" onClick={navigateToSignUp} />
