@@ -21,6 +21,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pipenv install --dev
+          pip install pytest
           
       - name: Run Backend Tests
         run: |
