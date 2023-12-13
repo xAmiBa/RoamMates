@@ -27,3 +27,12 @@ color: #666666;
     box-shadow: 0 0 10px 5px grey;
 }
 
+form{
+    width: 50%;
+}
+.button-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

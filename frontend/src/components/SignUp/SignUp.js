@@ -59,12 +59,13 @@ const SignUp = ({navigate}) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         console.log(values)
+        navigate('/login')
         // TODO: Send data to the backend.
     }
 
     return(
         <div className="container primary-background-colour">
-            <h1 className="primary-heading">Sign Up</h1>
+            <h1 className="primary-heading" data-cy="signup-heading">Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 {form.map((input) => (
                     <FormField 

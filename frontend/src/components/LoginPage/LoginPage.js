@@ -51,7 +51,7 @@ const LoginPage = ({navigate}) => {
 
     return(
         <div className="container primary-background-colour">
-            <h1 className="primary-heading">Login</h1>
+            <h1 className="primary-heading" data-cy="login-heading">Login</h1>
             <form onSubmit={handleSubmit}>
                 {form.map((input) => (
                     <FormField 
