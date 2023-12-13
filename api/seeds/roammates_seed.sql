@@ -65,8 +65,8 @@ CREATE TABLE preferences (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (1, '[18-24]', 'Other', 'North America', 'Winter', 'Resort'); 
-INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (2, '[25-30]', 'Female', 'Europe', 'Spring', 'Beach'); 
+INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (1, '[18, 24]', 'Other', 'North America', 'Winter', 'Resort'); 
+INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (2, '[25, 30]', 'Female', 'Europe', 'Spring', 'Beach'); 
 
 -- # Write file into database in terminal
 -- run from api dir
