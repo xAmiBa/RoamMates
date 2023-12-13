@@ -1,0 +1,30 @@
+name: Build and Test
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Run Backend Job
+        uses: ./.github/workflows/backend.yml
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Run Frontend Job
+        uses: ./.github/workflows/frontend.yml
+
+  selenium-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Run Selenium Tests Job
+        uses: ./.github/workflows/selenium-tests.yml
