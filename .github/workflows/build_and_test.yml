@@ -10,40 +10,52 @@ jobs:
     steps:
       - name: Check out the code
         uses: actions/checkout@v3
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+        
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.11
+          
       - name: Install Backend Dependencies
         run: |
-          pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install pipenv
+          pipenv install --dev
+          
       - name: Run Backend Tests
         run: |
-          python -m unittest discover
+          pipenv run pytest
+          
   frontend:
       runs-on: ubuntu-latest
       steps:
         - name: Check out the code
           uses: actions/checkout@v3
+          
         - name: Set up Node.js
           uses: actions/setup-node@v3
           with:
             node-version: 14
+            
         - name: Install Frontend Dependencies
           run: |
             npm install
+            
         - name: Run Frontend Tests
           run: |
             npm test
+            
   selenium-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
         uses: actions/checkout@v3
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+        
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.11
+          
       - name: Set up Selenium and ChromeDriver
         run: |
           sudo apt-get update
@@ -55,4 +67,4 @@ jobs:
           pip install selenium
       - name: Run Selenium Tests
         run: |
-          python path/to/your/selenium_tests.py
+          python tests/selenium_tests.py
