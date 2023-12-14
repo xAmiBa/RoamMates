@@ -47,4 +47,4 @@ Test if user by email not found
 def test_find_user_by_email_none(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = UserRepository(db_connection)
-    assert repository.find_by_email("nonexistingemail@gmail.com") == None
+    assert repository.find_by_email("nonexistingemail@gmail.com") == []

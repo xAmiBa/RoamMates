@@ -24,7 +24,7 @@ class UserRepository():
                                         [user_id])
 
         if rows == []:
-            return None
+            return []
         else: 
             row = rows[0]
             return User(row["id"], row["username"], row["password"], row["email"])

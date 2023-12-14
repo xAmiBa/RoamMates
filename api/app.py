@@ -8,17 +8,9 @@ from lib.User_repository import UserRepository
 from lib.database_connection import get_flask_database_connection
 
 # Create a new Flask app
-def create_app(config = None):
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(32)
 
-    app = Flask(__name__)
-
-    if config:
-        app.config.from_object(config)
-
-    app.secret_key = secrets.token_hex(32)
-    return app
-
-app = create_app()
 
 """
 Route: /users/add
@@ -33,18 +25,19 @@ def user_signup():
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
+    print("EMAIL PASSED:", email)
 
     # Check if user email is unique
-    if users.find_by_email(email) is None:
+    if users.find_by_email(email) == []:
         users.add(User(None, username, password, email))
         response = app.response_class(response=json.dumps({"message": "OK!"}), status=200)
-        print(response)
   
     else:
+        print("User already exists:")
         response = app.response_class(response=json.dumps({"message": "Credentials error"}), status=401)
         
-    return response
 
+    return response
 """
 Route: /users/authentication
 Request: GET
@@ -64,7 +57,5 @@ Request:
 
 
 if __name__ == '__main__':
-    config = os.environ.get('APP_CONFIG', 'config.DevelopmentConfig')
-    app = create_app(config)
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
 
