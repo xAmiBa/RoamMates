@@ -1,10 +1,12 @@
+from dataclasses import dataclass
+
+"""
+Model represents users table containing user informations
+"""
+@dataclass
 class User:
-
-    def __init__(self, id, username, password, email):
-        self.id = id
-        self.username = username
-        self.password = password
-        self.email = email
-
-    def __eq__(self, other):
-        return self.__dict__ == other.__dict__
+    id: int
+    username: str
+    password: str
+    email: str
+        

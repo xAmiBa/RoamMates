@@ -15,7 +15,8 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username text,
   password text,
-  email text
+  email text,
+  UNIQUE (email)
 );
 
 INSERT INTO users (username, password, email) VALUES ('amina', 'amina1', 'amina@gmail.com');
@@ -46,7 +47,9 @@ CREATE TABLE requests (
   status boolean,
   request_from int,
   request_to int,
-  FOREIGN KEY (request_to) REFERENCES users(id) ON DELETE CASCADE
+  FOREIGN KEY (request_to) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (request_from) REFERENCES users(id) ON DELETE CASCADE
+
 );
 
 INSERT INTO requests (status, request_from, request_to) VALUES (null, 1, 2); -- unresolved request
@@ -56,17 +59,17 @@ INSERT INTO requests (status, request_from, request_to) VALUES (true, 2, 1); -- 
 CREATE SEQUENCE IF NOT EXISTS preferences_id_seq;
 CREATE TABLE preferences (
   id SERIAL PRIMARY KEY,
-  user_id int,
-  age_slot text,
-  gender text,
-  continent text,
-  season text,
-  category text,
+  user_id INT,
+  age_slot VARCHAR(10) CHECK (age_slot IN ('[18, 24]', '[25, 30]', '[30, 100]')) NOT NULL,
+  gender VARCHAR(10) CHECK (gender IN ('male', 'female', 'other')) NOT NULL,
+  continent VARCHAR(20) CHECK (continent IN ('Africa', 'Asia', 'Europe', 'North America', 'South America', 'Oceania', 'Antarctica')) NOT NULL,
+  season VARCHAR(10) CHECK (season IN ('spring', 'summer', 'autumn', 'winter')) NOT NULL,
+  category VARCHAR(20) CHECK (category IN ('mountains', 'beach', 'resort', 'city', 'nature', 'sport')) NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (1, '[18, 24]', 'Other', 'North America', 'Winter', 'Resort'); 
-INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (2, '[25, 30]', 'Female', 'Europe', 'Spring', 'Beach'); 
+INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (1, '[18, 24]', 'other', 'North America', 'winter', 'resort'); 
+INSERT INTO preferences (user_id, age_slot, gender, continent, season, category) VALUES (2, '[25, 30]', 'female', 'Europe', 'spring', 'beach'); 
 
 -- # Write file into database in terminal
 -- run from api dir
