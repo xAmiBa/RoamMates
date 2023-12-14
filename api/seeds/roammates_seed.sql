@@ -36,8 +36,8 @@ CREATE TABLE profiles (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-INSERT INTO profiles (user_id, picture, name, age, gender, bio) VALUES (1, "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg", 'Amina', '28', 'Female', 'Test bio Amina');
-INSERT INTO profiles (user_id, picture, name, age, gender, bio) VALUES (2, "https://www.treasury.gov.ph/wp-content/uploads/2022/01/male-placeholder-image.jpeg", 'Daniel', '24', 'Male', 'Test bio Daniel');
+INSERT INTO profiles (user_id, picture, name, age, gender, bio) VALUES (1, 'https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg', 'Amina', '28', 'Female', 'Test bio Amina');
+INSERT INTO profiles (user_id, picture, name, age, gender, bio) VALUES (2, 'https://www.treasury.gov.ph/wp-content/uploads/2022/01/male-placeholder-image.jpeg', 'Daniel', '24', 'Male', 'Test bio Daniel');
 
 
 CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
