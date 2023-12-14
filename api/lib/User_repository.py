@@ -22,7 +22,6 @@ class UserRepository():
     def find_by_email(self, user_id):
         rows = self._connection.execute('SELECT * from USERS WHERE email = %s',
                                         [user_id])
-        row = rows.fetchone()
 
         if rows == []:
             return None

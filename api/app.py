@@ -43,8 +43,8 @@ def user_signup():
     else:
         response = app.response_class(response=json.dumps({"message": "Credentials error"}), status=401)
         
-
     return response
+
 """
 Route: /users/authentication
 Request: GET
