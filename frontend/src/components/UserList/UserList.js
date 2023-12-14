@@ -12,11 +12,9 @@ Children:
     - UserCard component
 */
 
-
 // State that holds list of users.
 // TODO: Change to empty list
     const [userList, setUserList] = useState(users)
-
 
 // Variable to control version of the list of users. 
     const componentVersion = props.componentVersion
