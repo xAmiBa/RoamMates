@@ -39,7 +39,7 @@ Children:
 
     return(
         <div className="container primary-background-colour">
-            <h1 className="primary-heading">{heading}</h1>
+            <h1 className="primary-heading" data-cy="test-heading">{heading}</h1>
             <div className="user-list-container">
                 {userList.map((user) => (
                     <UserCard user={user} navigate={props.navigate}></UserCard>
