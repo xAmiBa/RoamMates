@@ -7,9 +7,16 @@ from lib.User import User
 from lib.User_repository import UserRepository
 from lib.database_connection import get_flask_database_connection
 
+
 # Create a new Flask app
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
+
+# # Configure the app based on the environment
+# if os.environ.get("APP_ENV") == "test":
+#     app.config.from_object("config.TestConfig")
+# else:
+#     app.config.from_object("config.DevelopmentConfig")
 
 
 """
@@ -25,7 +32,6 @@ def user_signup():
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
-    print("EMAIL PASSED:", email)
 
     # Check if user email is unique
     if users.find_by_email(email) == []:
@@ -33,11 +39,11 @@ def user_signup():
         response = app.response_class(response=json.dumps({"message": "OK!"}), status=200)
   
     else:
-        print("User already exists:")
+        print("User already exists")
         response = app.response_class(response=json.dumps({"message": "Credentials error"}), status=401)
         
-
     return response
+
 """
 Route: /users/authentication
 Request: GET
@@ -46,6 +52,32 @@ Request: GET
 @app.route("/users/authentication")
 def user_login():
     pass
+
+
+"""
+Route: /profiles/data
+Request: GET
+[gets all users profiles data]
+"""
+@app.route("/profiles/data")
+def profiles_data():
+    connection = get_flask_database_connection(app)
+    users = UserRepository(connection)
+
+    username = request.form.get('username')
+    password = request.form.get('password')
+    email = request.form.get('email')
+
+    # Check if user email is unique
+    if users.find_by_email(email) == []:
+        users.add(User(None, username, password, email))
+        response = app.response_class(response=json.dumps({"message": "OK!"}), status=200)
+  
+    else:
+        print("User already exists")
+        response = app.response_class(response=json.dumps({"message": "Credentials error"}), status=401)
+        
+    return response
 
 
 """
