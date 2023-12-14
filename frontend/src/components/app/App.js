@@ -1,5 +1,5 @@
 import "./App.css";
-
+import UserList from "../UserList/UserList";
 import Home from "../Home/Home";
 import LoginPage from "../LoginPage/LoginPage";
 import SignUp from "../SignUp/SignUp";
@@ -18,6 +18,12 @@ const App = () => {
         <Route
           path="/signup"
           element={<SignUp navigate={useNavigate()} />}
+        ></Route>
+        <Route path="/home" element={<UserList navigate={useNavigate()} componentVersion='home'/>} 
+        ></Route>
+        <Route path="/matches" element={<UserList navigate={useNavigate()} componentVersion='matches'/>} 
+        ></Route>
+        <Route path="/requests" element={<UserList navigate={useNavigate()} componentVersion='requests'/>} 
         ></Route>
       </Routes>
     </div>
