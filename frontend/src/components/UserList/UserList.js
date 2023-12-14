@@ -42,7 +42,7 @@ Children:
             <h1 className="primary-heading">{heading}</h1>
             <div className="user-list-container">
                 {userList.map((user) => (
-                    <UserCard user={user}></UserCard>
+                    <UserCard user={user} navigate={props.navigate}></UserCard>
                 ))}
                 </div>
         </div>

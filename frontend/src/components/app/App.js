@@ -5,6 +5,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import SignUp from "../SignUp/SignUp";
 import React from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
+import UserDetail from "../UserDetail/UserDetail";
 
 const App = () => {
   return (
@@ -25,6 +26,9 @@ const App = () => {
         ></Route>
         <Route path="/requests" element={<UserList navigate={useNavigate()} componentVersion='requests'/>} 
         ></Route>
+        {/* TODO: Add userID URL param */}
+        <Route path="/userdetail" element={<UserDetail navigate={useNavigate()}/>} 
+      ></Route>
       </Routes>
     </div>
   );

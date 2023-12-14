@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 25%;
     min-height: 400px;
+    cursor: pointer;
 }
 
 .user-card, .image-container{
