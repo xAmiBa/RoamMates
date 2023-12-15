@@ -9,7 +9,7 @@ const SideBar = ({navigate}) => {
             id:1,
             text:"Home",
             onClick(){
-                navigate("/home")
+                navigate("/")
             }
         },
         {

@@ -67,7 +67,7 @@ const LoginPage = ({ navigate }) => {
           <PrimaryButton text="Login" />
         </div>
         <p>
-          <a href="/signup">Don't have an account? Go to Sign Up.</a>
+          <a href="/users/signup">Don't have an account? Go to Sign Up.</a>
         </p>
       </form>
     </div>

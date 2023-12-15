@@ -39,7 +39,6 @@ Children:
 
     return(
         <>
-        <SideBar navigate={props.navigate}/>
         <div className="container primary-background-colour">
             <h1 className="primary-heading" data-cy="test-heading">{heading}</h1>
             <div className="user-list-container">

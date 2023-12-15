@@ -7,28 +7,50 @@ import React from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import UserDetail from "../UserDetail/UserDetail";
 
+import AuthLayout from "../AuthLayout/AuthLayout";
+
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home navigate={useNavigate()} />}></Route>
         <Route
-          path="/login"
+          path="/users/home"
+          element={<Home navigate={useNavigate()} />}
+        ></Route>
+        <Route
+          path="users/login"
           element={<LoginPage navigate={useNavigate()} />}
         ></Route>
         <Route
-          path="/signup"
+          path="users/signup"
           element={<SignUp navigate={useNavigate()} />}
         ></Route>
-        <Route path="/home" element={<UserList navigate={useNavigate()} componentVersion='home'/>} 
-        ></Route>
-        <Route path="/matches" element={<UserList navigate={useNavigate()} componentVersion='matches'/>} 
-        ></Route>
-        <Route path="/requests" element={<UserList navigate={useNavigate()} componentVersion='requests'/>} 
-        ></Route>
-        {/* TODO: Add userID URL param */}
-        <Route path="/userdetail" element={<UserDetail navigate={useNavigate()}/>} 
-      ></Route>
+
+        <Route path="/" element={<AuthLayout navigate={useNavigate()}/>}>
+          <Route
+            path=""
+            element={
+              <UserList navigate={useNavigate()} componentVersion="home" />
+            }
+          ></Route>
+          <Route
+            path="/matches"
+            element={
+              <UserList navigate={useNavigate()} componentVersion="matches" />
+            }
+          ></Route>
+          <Route
+            path="/requests"
+            element={
+              <UserList navigate={useNavigate()} componentVersion="requests" />
+            }
+          ></Route>
+          {/* TODO: Add userID URL param */}
+          <Route
+            path="/userdetail"
+            element={<UserDetail navigate={useNavigate()} />}
+          ></Route>
+        </Route>
       </Routes>
     </div>
   );

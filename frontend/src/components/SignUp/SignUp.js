@@ -89,7 +89,7 @@ const SignUp = ({ navigate }) => {
           <PrimaryButton text="Sign Up" />
         </div>
         <p>
-          <a href="/login">Already have an account? Go to Log In.</a>
+          <a href="/users/login">Already have an account? Go to Log In.</a>
         </p>
       </form>
     </div>
