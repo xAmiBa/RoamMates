@@ -51,7 +51,7 @@ const LoginPage = ({ navigate }) => {
 
   return (
     <div className="container primary-background-colour">
-      <h1 className="primary-heading" data-cy="login-heading">
+      <h1 className="primary-heading" data-cy="login-heading" id="login-title">
         Login
       </h1>
       <form onSubmit={handleSubmit}>
@@ -64,10 +64,10 @@ const LoginPage = ({ navigate }) => {
           />
         ))}
         <div className="button-container">
-          <PrimaryButton text="Login" />
+          <PrimaryButton text="Login" id="login-login-button" />
         </div>
         <p>
-          <a href="/signup">Don't have an account? Go to Sign Up.</a>
+          <a href="/signup" id="login-signup-redirect">Don't have an account? Go to Sign Up.</a>
         </p>
       </form>
     </div>
