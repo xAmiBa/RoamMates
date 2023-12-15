@@ -23,7 +23,7 @@ class UserRepository():
         rows = self._connection.execute('SELECT * from USERS WHERE email = %s',
                                         [user_id])
 
-        if rows == []:
+        if rows:
             return []
         else: 
             row = rows[0]
