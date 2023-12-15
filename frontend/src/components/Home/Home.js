@@ -10,11 +10,11 @@ const Home = ({ navigate }) => {
   */
 
   const navigateToLogin = () => {
-    navigate("/login");
+    navigate("/users/login");
   };
 
   const navigateToSignUp = () => {
-    navigate("/signup");
+    navigate("/users/signup");
   };
 
   return (

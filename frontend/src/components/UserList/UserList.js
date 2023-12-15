@@ -2,6 +2,8 @@ import { useState } from "react"
 import'./UserList.css'
 import UserCard from "../UserCard/UserCard"
 import users from "../../constants/userList"
+import SideBar from "../SideBar/SideBar"
+
 
 const UserList = (props) => {
 /*
@@ -36,6 +38,7 @@ Children:
 // TODO: Add API request to change state of the UserList.
 
     return(
+        <>
         <div className="container primary-background-colour">
             <h1 className="primary-heading" id="page-header" data-cy="test-heading">{heading}</h1>
             <div id="home-user-list-container" className="user-list-container">
@@ -44,6 +47,7 @@ Children:
                 ))}
                 </div>
         </div>
+        </>
     )
 }
 

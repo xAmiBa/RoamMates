@@ -38,5 +38,9 @@ form{
 }
 body{
     background-image: url("../../../public/map_crop.jpeg");;
+}
 
+.image-container{
+    display: flex;
+    
 }
