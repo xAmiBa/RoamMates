@@ -1,7 +1,4 @@
-import json
-from playwright.sync_api import Page, expect
 from token_config import token_generator
-import unittest
 
 
 """
