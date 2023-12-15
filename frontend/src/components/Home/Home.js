@@ -19,12 +19,12 @@ const Home = ({ navigate }) => {
 
   return (
     <div className="container primary-background-colour">
-      <h1 className="primary-heading" data-cy="head-content">
+      <h1 className="primary-heading" data-cy="head-content" id="home-title">
         Roam Mates
       </h1>
-      <p className="description">{descirpiotn}</p>
-      <PrimaryButton text="Login" onClick={navigateToLogin} />
-      <PrimaryButton text="Sign Up" onClick={navigateToSignUp} />
+      <p className="description" id="home-app-description">{descirpiotn}</p>
+      <PrimaryButton text="Login" onClick={navigateToLogin} id="home-login-button"/>
+      <PrimaryButton text="Sign Up" onClick={navigateToSignUp} id="home-signup-button"/>
     </div>
   );
 };

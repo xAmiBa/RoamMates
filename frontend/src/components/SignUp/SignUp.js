@@ -73,7 +73,7 @@ const SignUp = ({ navigate }) => {
 
   return (
     <div className="container primary-background-colour">
-      <h1 className="primary-heading" data-cy="signup-heading">
+      <h1 className="primary-heading" data-cy="signup-heading" id="signup-title" >
         Sign Up
       </h1>
       <form onSubmit={handleSubmit}>
@@ -86,7 +86,7 @@ const SignUp = ({ navigate }) => {
           />
         ))}
         <div className="button-container">
-          <PrimaryButton text="Sign Up" />
+          <PrimaryButton text="Sign Up" id="signup-signup-button" />
         </div>
         <p>
           <a href="/users/login" id="signup-login-redirect">Already have an account? Go to Log In.</a>
