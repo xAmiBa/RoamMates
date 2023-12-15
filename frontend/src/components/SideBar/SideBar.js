@@ -30,7 +30,7 @@ const SideBar = ({navigate}) => {
             id:4,
             text:"My Profile",
             onClick(){
-                navigate("/userdetail")
+                navigate("/myprofile")
             }
         },
         {
@@ -43,7 +43,7 @@ const SideBar = ({navigate}) => {
     ]
 
     return (
-        <div className="side-bar primary-background-colour">
+        <div className="side-bar primary-background-colour" id="sidebar">
             {links.map((link) => (
                 <PrimaryButton 
                 key={link.id}

@@ -47,7 +47,11 @@ const App = () => {
           ></Route>
           {/* TODO: Add userID URL param */}
           <Route
-            path="/userdetail"
+            path="/user/id/:id"
+            element={<UserDetail navigate={useNavigate()} />}
+          ></Route>
+          <Route
+            path="/myprofile"
             element={<UserDetail navigate={useNavigate()} />}
           ></Route>
         </Route>
