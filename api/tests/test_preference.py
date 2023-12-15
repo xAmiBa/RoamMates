@@ -1,5 +1,6 @@
 from lib.Preference import Preference
 
+
 def test_preference_initiation():
     preference = Preference(1, 1, "[18,24]", "Male", "Europe", "Summer", "Beach")
     assert preference.id == 1
@@ -9,6 +10,7 @@ def test_preference_initiation():
     assert preference.continent == "Europe"
     assert preference.season == "Summer"
     assert preference.category == "Beach"
+
 
 def test_eql():
     preference1 = Preference(1, 1, "[18,24]", "Male", "Europe", "Summer", "Beach")

@@ -28,22 +28,22 @@ Request: POST
 @app.route("/users/add", methods=["POST"])
 def user_signup():
     connection = get_flask_database_connection(app)
-    users = UserRepository(connection)
+    user_repo = UserRepository(connection)
 
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
 
     # Check if user email is unique
-    if users.find_by_email(email) == []:
-        users.add(User(None, username, password, email))
-        response = jsonify({"message": "OK!"})
-        response.status_code = 200
-
-    else:
+    if user_repo.find_by_email(email):
         print("User already exists:")
         response = jsonify({"message": "Credentials error"})
         response.status_code = 401
+
+    else:
+        user_repo.add(User(None, username, password, email))
+        response = jsonify({"message": "OK!"})
+        response.status_code = 200        
 
     return response
 
@@ -88,8 +88,8 @@ Request:  GET
 @app.route("/profiles/data", methods=["GET"])
 def users_profiles_data():
     connection = get_flask_database_connection(app)
-    users = UserRepository(connection)
-    users_list = users.all()
+    user_repo = UserRepository(connection)
+    users_list = user_repo.all()
 
     token = request.form.get('token')
     user_id = session.get('user_id')
@@ -120,8 +120,8 @@ Request: GET
 @app.route("/requests/null", methods=["GET"])
 def requests_null():
     connection = get_flask_database_connection(app)
-    requests = RequestRepository(connection)
-    requests_list = requests.all_null()
+    requests_repo = RequestRepository(connection)
+    requests_list = requests_repo.all_null()
 
     token = request.form.get('token')
     user_id = session.get('user_id')
@@ -149,8 +149,8 @@ Request: GET
 @app.route("/requests/true", methods=["GET"])
 def requests_true():
     connection = get_flask_database_connection(app)
-    requests = RequestRepository(connection)
-    requests_list = requests.all_true()
+    requests_repo = RequestRepository(connection)
+    requests_list = requests_repo.all_true()
 
     token = request.form.get('token')
     user_id = session.get('user_id')
@@ -179,19 +179,19 @@ Request: GET
 @app.route("/profiles/user_id", methods=["GET"])
 def user_profile():
     connection = get_flask_database_connection(app)
-    profiles = UserRepository(connection)
-    preferences = PreferenceRepository(connection)
-    requests = RequestRepository(connection)
+    profiles_repo = UserRepository(connection)
+    preferences_repo = PreferenceRepository(connection)
+    requests_repo = RequestRepository(connection)
 
     token = request.form.get('token')
     user_id_from_req = request.form.get('id')
     session_user_id = session.get('user_id')
 
-    profile_data = profiles.find_by_id(user_id_from_req)
-    preferences_data = preferences.find_by_user_id(user_id_from_req)
+    profile_data = profiles_repo.find_by_id(user_id_from_req)
+    preferences_data = preferences_repo.find_by_user_id(user_id_from_req)
 
      # request status between for session user and accessed profile
-    request_data = requests.get_request_status(session_user_id, user_id_from_req)
+    request_data = requests_repo.get_request_status(session_user_id, user_id_from_req)
     
     if token_checker(token, session_user_id):
         token = token_generator(session_user_id)
