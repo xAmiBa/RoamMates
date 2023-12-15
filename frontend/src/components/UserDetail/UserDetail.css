@@ -24,7 +24,8 @@
 }
 
 .preferences-container{
-    margin-top: 50px;
+    flex-direction: column;
+    margin-left: 25px;
 }
 
 .bio-container{
@@ -33,4 +34,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 50px;
+}
+.icon-container{
+    margin: 0 50px;
+}
+.preference-text, .preference-value, .icon-wrapper{
+    display: inline-block;
+    color: black;
+}
+.preference-text{
+    margin: 0 50px 25px 25px;
+}
+.preference-value{
+    font-size: 18px;
+}
+.icon-wrapper{
+    width: 50px;
+    color: #666666;
+}
+.title{
+    text-align: center;
+    font-size: 24px;
+    width: 50%;
+}
+.secondary-heading{
+    width: 50%;
+    padding: 0;
+    margin: 0;
 }
