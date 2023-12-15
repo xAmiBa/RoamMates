@@ -6,6 +6,7 @@ import secrets
 from lib.User import User
 from lib.User_repository import UserRepository
 from lib.database_connection import get_flask_database_connection
+from token_config import token_checker, token_generator
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -35,17 +36,30 @@ def user_signup():
     else:
         print("User already exists:")
         response = app.response_class(response=json.dumps({"message": "Credentials error"}), status=401)
-        
 
     return response
 """
 Route: /users/authentication
-Request: GET
+Request: POST
 [verifies that username matches password and creates a token]
 """
-@app.route("/users/authentication")
+@app.route("/users/authentication", methods=["POST"])
 def user_login():
-    pass
+    connection = get_flask_database_connection(app)
+    users = UserRepository(connection)
+
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if users.check_login_details(email, password) is True:
+        user = users.find_by_email(email)
+        token = token_generator(user.id)
+        response = app.response_class(response=json.dumps({
+            "message": "OK!",
+            "token": token
+            }),status=200)
+        return response
+    return app.response_class(response=json.dumps({"message": "Invalid credentials"}), status=401)
 
 
 """

@@ -48,3 +48,28 @@ def test_find_user_by_email_none(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = UserRepository(db_connection)
     assert repository.find_by_email("nonexistingemail@gmail.com") == []
+
+"""
+Test if user email and password is in database for login attempt
+"""
+
+def test_check_login_details(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = UserRepository(db_connection)
+    assert repository.check_login_details("amina@gmail.com", "amina1") == True
+
+
+def test_check_login_details_password_incorrect(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = UserRepository(db_connection)
+    assert repository.check_login_details("amina@gmail.com", "amina5") == False
+
+def test_check_login_details_email_incorrect(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = UserRepository(db_connection)
+    assert repository.check_login_details("amina@gmail.co.uk", "amina1") == False
+
+def test_check_login_details_password(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = UserRepository(db_connection)
+    assert repository.check_login_details("amina@gmail.co.uk", "daniel1") == False

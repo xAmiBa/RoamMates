@@ -29,3 +29,11 @@ class UserRepository():
             row = rows[0]
             return User(row["id"], row["username"], row["password"], row["email"])
     
+    def check_login_details(self, email:str, password_attempt:str):
+        query = 'SELECT * FROM users WHERE email = %s AND password = %s'
+
+        params = [email, password_attempt]
+        rows = self._connection.execute(query, params)
+        if rows == []:
+            return False
+        return True
