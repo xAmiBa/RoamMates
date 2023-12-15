@@ -1,12 +1,36 @@
-.image-container{
+/* .image-container{
     width: 300px;
+} */
+
+.profile-image{
+    width: 300px;
+}
+
+.profile-detail-container{
+    justify-content: start;
+    align-items: start;
+    width: 50%;
+    margin: 300px auto;
+    display: flex;
+    align-items: start;
+    box-shadow: 0 0 10px 5px grey;
+    flex-direction: column;
+    padding: 50px;
 }
 
 .row{
     display: flex;
+    width: 100%;
 }
 
-.container{
-    justify-content: start;
-    align-items: start;
+.preferences-container{
+    margin-top: 50px;
+}
+
+.bio-container{
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
