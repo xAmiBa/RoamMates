@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 import json
 import psycopg
 import os
@@ -11,11 +11,12 @@ from lib.User_repository import UserRepository
 from lib.User import User
 from lib.Profile_repository import ProfileRepository
 from lib.Profile import Profile
+from lib.Request_repository import RequestRepository
+from lib.Preference_repository import PreferenceRepository
 
 # Create a new Flask app
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
-
 
 """
 Route: /users/add
@@ -30,7 +31,6 @@ def user_signup():
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
-    print("EMAIL PASSED:", email)
 
     # Check if user email is unique
     if users.find_by_email(email) == []:
@@ -59,6 +59,8 @@ def user_login():
 
     if users.check_login_details(email, password) is True:
         user = users.find_by_email(email)
+        # adds user_id to session to verify tokes later
+        session['user_id'] = user.id
         token = token_generator(user.id)
         response = jsonify({
             "message": "OK!",
@@ -77,11 +79,31 @@ Route: /profiles/data
 Request:  GET
 [gets all users profiles data]
 """
+@app.route("/profiles/data", methods=["GET"])
 def users_profiles_data():
     connection = get_flask_database_connection(app)
     users = UserRepository(connection)
-    profiles = ProfileRepository(connection)
-    email = request.form.get('token')
+    users_list = users.all()
+
+    token = request.form.get('token')
+    user_id = session.get('user_id')
+    
+    if token_checker(token, user_id):
+        token = token_generator(user_id)
+        response = jsonify({
+            "message": "OK!",
+            "token": token,
+            "users": users_list
+            })
+        response.status_code = 200
+
+    else:
+        response = jsonify({"message": "Invalid credentials"})
+        response.status_code = 401
+    
+    return response
+
+
 
 
 """
@@ -89,12 +111,98 @@ Route: /requests/null
 Request: GET
 [gets users profiles data - only profiles who sent request to user]
 """
+@app.route("/requests/null", methods=["GET"])
+def requests_null():
+    connection = get_flask_database_connection(app)
+    requests = RequestRepository(connection)
+    requests_list = requests.all_null()
+
+    token = request.form.get('token')
+    user_id = session.get('user_id')
+    
+    if token_checker(token, user_id):
+        token = token_generator(user_id)
+        response = jsonify({
+            "message": "OK!",
+            "token": token,
+            "requests": requests_list
+            })
+        response.status_code = 200
+
+    else:
+        response = jsonify({"message": "Invalid credentials"})
+        response.status_code = 401
+
+    return response
+
 """
 Route: /requests/true
 Request: GET
 [gets users profiles data - only matched users]
 """
+@app.route("/requests/true", methods=["GET"])
+def requests_true():
+    connection = get_flask_database_connection(app)
+    requests = RequestRepository(connection)
+    requests_list = requests.all_true()
 
+    token = request.form.get('token')
+    user_id = session.get('user_id')
+    
+    if token_checker(token, user_id):
+        token = token_generator(user_id)
+        response = jsonify({
+            "message": "OK!",
+            "token": token,
+            "requests": requests_list,
+            })
+        response.status_code = 200
+
+    else:
+        response = jsonify({"message": "Invalid credentials"})
+        response.status_code = 401
+
+    return response
+
+
+"""
+Route: /profiles/user_id
+Request: GET
+[gets profile data by user id]
+"""
+@app.route("/profiles/user_id", methods=["GET"])
+def user_profile():
+    connection = get_flask_database_connection(app)
+    profiles = UserRepository(connection)
+    preferences = PreferenceRepository(connection)
+    requests = RequestRepository(connection)
+
+    token = request.form.get('token')
+    user_id_from_req = request.form.get('id')
+    session_user_id = session.get('user_id')
+
+    profile_data = profiles.find_by_id(user_id_from_req)
+    preferences_data = preferences.find_by_user_id(user_id_from_req)
+
+     # request status between for session user and accessed profile
+    request_data = requests.get_request_status(session_user_id, user_id_from_req)
+    
+    if token_checker(token, session_user_id):
+        token = token_generator(session_user_id)
+        response = jsonify({
+            "message": "OK!",
+            "token": token,
+            "profile": profile_data,
+            "preferences": preferences_data,
+            "user_request_status": request_data
+            })
+        response.status_code = 200
+
+    else:
+        response = jsonify({"message": "Invalid credentials"})
+        response.status_code = 401
+
+    return response
 
 
 if __name__ == '__main__':
