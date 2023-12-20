@@ -25,10 +25,9 @@ INSERT INTO users (username, password, email) VALUES ('daniel', 'daniel1', 'dani
 
 
 -- Then, we recreate them
-CREATE SEQUENCE IF NOT EXISTS profiles_id_seq;
+-- CREATE SEQUENCE IF NOT EXISTS profiles_id_seq;
 CREATE TABLE profiles (
-  id SERIAL PRIMARY KEY,
-  user_id int,
+  user_id INT PRIMARY KEY,
   picture text,
   name text,
   age text,

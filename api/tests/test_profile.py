@@ -1,9 +1,10 @@
 from lib.Profile import Profile
+from lib.User import User
 
 
 def test_profile_initiation():
-    profile = Profile(1, 1, None, "Amina", "25", "Female", "Test bio 1")
-    assert profile.id == 1
+    test_user = User(1, "username", "password", "email")
+    profile = Profile(1, test_user, None, "Amina", "25", "Female", "Test bio 1")
     assert profile.user_id == 1
     assert profile.name == "Amina"
     assert profile.age == "25"
@@ -12,6 +13,7 @@ def test_profile_initiation():
 
 
 def test_eql():
-    profile1 = Profile(1, 1, None, "Amina", "25", "Female", "Test bio 1")
-    profile2 = Profile(1, 1, None, "Amina", "25", "Female", "Test bio 1")
+    test_user = User(1, "username", "password", "email")
+    profile1 = Profile(1, test_user, "Amina", None, "25", "Female", "Test bio 1")
+    profile2 = Profile(1, test_user, "Amina", None, "25", "Female", "Test bio 1")
     assert profile1 == profile2
