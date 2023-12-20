@@ -13,7 +13,7 @@ from lib.Profile_repository import ProfileRepository
 from lib.Profile import Profile
 from lib.Request_repository import RequestRepository
 from lib.Preference_repository import PreferenceRepository
-
+from routes.profile import apply_profile_routes
 # Create a new Flask app
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
@@ -23,7 +23,7 @@ Route: /users/add
 Request: POST
 [Signup, adds user to Users table]
 """
-
+apply_profile_routes(app)
 
 @app.route("/users/add", methods=["POST"])
 def user_signup():
@@ -79,35 +79,6 @@ def user_login():
     
     return response
 
-
-"""
-Route: /profiles/data
-Request:  GET
-[gets all users profiles data]
-"""
-@app.route("/profiles/data", methods=["GET"])
-def users_profiles_data():
-    connection = get_flask_database_connection(app)
-    user_repo = UserRepository(connection)
-    users_list = user_repo.all()
-
-    token = request.form.get('token')
-    user_id = session.get('user_id')
-    
-    if token_checker(token, user_id):
-        token = token_generator(user_id)
-        response = jsonify({
-            "message": "OK!",
-            "token": token,
-            "users": users_list
-            })
-        response.status_code = 200
-
-    else:
-        response = jsonify({"message": "Invalid credentials"})
-        response.status_code = 401
-    
-    return response
 
 
 
