@@ -142,8 +142,8 @@ when request to /requests/null
 
 
 def test_requests_null(web_client, test_web_address):
-    token_mock = token_generator(1)
-    session_data = {"user_id": 1}
+    token_mock = token_generator(2)
+    session_data = {"user_id": 2}
 
     # Session context manager to mock session data
     with web_client.session_transaction() as sess:
@@ -155,11 +155,19 @@ def test_requests_null(web_client, test_web_address):
 
     assert response.status_code == 200
     assert response.get_json().get("message") == "OK!"
-    assert response.get_json().get("requests")[0] == {
-        "id": 1,
-        "request_from": 1,
-        "request_to": 2,
-        "status": None,
+    assert response.get_json().get("users")[0] == {
+        "age": "28",
+        "bio": "Test bio Amina",
+        "gender": "Female",
+        "name": "Amina",
+        "picture": "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg",
+        "user": {
+            "email": "amina@gmail.com",
+            "id": 1,
+            "password": None,
+            "username": "amina",
+        },
+        "user_id": 1,
     }
 
 
@@ -189,28 +197,6 @@ def test_requests_null_fail(web_client, test_web_address):
 Check if server returns "OK" response 
 when request to /requests/true
 """
-
-
-def test_requests_null(web_client, test_web_address):
-    token_mock = token_generator(1)
-    session_data = {"user_id": 1}
-
-    # Session context manager to mock session data
-    with web_client.session_transaction() as sess:
-        sess.update(session_data)
-
-    response = web_client.get(
-        f"http://{test_web_address}/requests/true", data={"token": token_mock}
-    )
-
-    assert response.status_code == 200
-    assert response.get_json().get("message") == "OK!"
-    assert response.get_json().get("requests")[0] == {
-        "id": 2,
-        "request_from": 2,
-        "request_to": 1,
-        "status": True,
-    }
 
 
 """

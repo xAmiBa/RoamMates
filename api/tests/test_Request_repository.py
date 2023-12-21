@@ -39,7 +39,7 @@ def test_get_all_true_requests(db_connection):
 def test_get_requesting_users_for_user_with_one_pending_request(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = RequestRepository(db_connection)
-    result = repository.get_requesting_users_for_user(2)
+    result = repository.get_requesting_users_for_user(2, "IS NULL")
     assert result == [
         Profile(
             1,
@@ -56,7 +56,7 @@ def test_get_requesting_users_for_user_with_one_pending_request(db_connection):
 def test_get_requesting_users_for_user_with_zero_pending_request(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = RequestRepository(db_connection)
-    result = repository.get_requesting_users_for_user(1)
+    result = repository.get_requesting_users_for_user(1, "IS NULL")
     assert result == []
 
 

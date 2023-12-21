@@ -32,31 +32,31 @@ Request: GET
 """
 
 
-@app.route("/requests/true", methods=["GET"])
-def requests_true():
-    connection = get_flask_database_connection(app)
-    requests_repo = RequestRepository(connection)
-    requests_list = requests_repo.all_true()
+# @app.route("/requests/true", methods=["GET"])
+# def requests_true():
+#     connection = get_flask_database_connection(app)
+#     requests_repo = RequestRepository(connection)
+#     requests_list = requests_repo.all_true()
 
-    token = request.form.get("token")
-    user_id = session.get("user_id")
+#     token = request.form.get("token")
+#     user_id = session.get("user_id")
 
-    if token_checker(token, user_id):
-        token = token_generator(user_id)
-        response = jsonify(
-            {
-                "message": "OK!",
-                "token": token,
-                "requests": requests_list,
-            }
-        )
-        response.status_code = 200
+#     if token_checker(token, user_id):
+#         token = token_generator(user_id)
+#         response = jsonify(
+#             {
+#                 "message": "OK!",
+#                 "token": token,
+#                 "requests": requests_list,
+#             }
+#         )
+#         response.status_code = 200
 
-    else:
-        response = jsonify({"message": "Invalid credentials"})
-        response.status_code = 401
+#     else:
+#         response = jsonify({"message": "Invalid credentials"})
+#         response.status_code = 401
 
-    return response
+#     return response
 
 
 """

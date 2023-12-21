@@ -32,8 +32,9 @@ class RequestRepository:
         ]
         return requests
 
-    def get_requesting_users_for_user(self, requested_user_id):
-        query = """
+    def get_requesting_users_for_user(self, requested_user_id, status_condition):
+
+        query = f"""
         SELECT 
         requests.status AS r_status,
         requests.request_from AS r_request_from,
@@ -49,7 +50,7 @@ class RequestRepository:
         FROM requests
         JOIN users ON requests.request_from = users.id
         JOIN profiles ON users.id = profiles.user_id
-        WHERE requests.request_to = %s AND requests.status IS NULL;
+        WHERE requests.request_to = %s AND requests.status {status_condition};
         """
 
         rows = self._connection.execute(query, [requested_user_id])
@@ -66,6 +67,9 @@ class RequestRepository:
             for row in rows
         ]
         return user_data
+    
+
+    
     # Function returning a status of request between session user and accesed profile user
     # For custom reject/accept/contact details/send request button
     # “” -> “send request”
