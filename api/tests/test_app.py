@@ -236,8 +236,8 @@ def test_profiles_data(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/profiles/user_id",
-        data={"token": token_mock, "id": 1},
+        f"http://{test_web_address}/profiles/1",
+        data={"token": token_mock},
     )
 
     assert response.status_code == 200
@@ -275,8 +275,8 @@ def test_profiles_data_fail(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/profiles/user_id",
-        data={"token": token_mock, "id": 1},
+        f"http://{test_web_address}/profiles/1",
+        data={"token": token_mock},
     )
 
     assert response.status_code == 401
