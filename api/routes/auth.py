@@ -15,14 +15,15 @@ def apply_auth_routes(app):
         """
         Route: /users/add
         Request: POST
-        [Signup, adds user to Users table]
+        Signup, adds user to Users table.
         """
+
         connection = get_flask_database_connection(app)
         user_repo = UserRepository(connection)
 
-        username = request.form.get('username')
-        password = request.form.get('password')
-        email = request.form.get('email')
+        username = request.form.get("username")
+        password = request.form.get("password")
+        email = request.form.get("email")
 
         # Check if user email is unique
         if user_repo.find_by_email(email):
@@ -33,20 +34,18 @@ def apply_auth_routes(app):
         else:
             user_repo.add(User(None, username, password, email))
             response = jsonify({"message": "OK!"})
-            response.status_code = 200        
+            response.status_code = 200
 
         return response
 
-
-    """
-    Route: /users/authentication
-    Request: POST
-    [verifies that username matches password and creates a token]
-    """
-
-
     @app.route("/users/authentication", methods=["POST"])
     def user_login():
+        """
+        Route: /users/authentication
+        Request: POST
+        Verifies that username matches password and creates a token.
+        """
+
         connection = get_flask_database_connection(app)
         users_repo = UserRepository(connection)
 
@@ -56,16 +55,12 @@ def apply_auth_routes(app):
         if users_repo.check_login_details(email, password) is True:
             user = users_repo.find_by_email(email)
             # adds user_id to session to verify tokes later
-            session['user_id'] = user.id
+            session["user_id"] = user.id
             token = token_generator(user.id)
-            response = jsonify({
-                "message": "OK!",
-                "token": token
-                })
+            response = jsonify({"message": "OK!", "token": token})
             response.status_code = 200
         else:
             response = jsonify({"message": "Invalid credentials"})
             response.status_code = 401
-        
-        return response
 
+        return response

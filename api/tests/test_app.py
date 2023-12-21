@@ -98,10 +98,18 @@ def test_user_data(web_client, test_web_address):
     assert response.status_code == 200
     assert response.get_json().get("message") == "OK!"
     assert response.get_json().get("users")[0] == {
-        "email": "amina@gmail.com",
-        "id": 1,
-        "password": "amina1",
-        "username": "amina",
+        "age": "28",
+        "bio": "Test bio Amina",
+        "gender": "Female",
+        "name": "Amina",
+        "picture": "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg",
+        "user": {
+            "email": "amina@gmail.com",
+            "id": 1,
+            "password": None,
+            "username": "amina",
+        },
+        "user_id": 1,
     }
 
 

@@ -1,5 +1,6 @@
 from lib.Request import Request
-
+from lib.Profile import Profile
+from lib.User import User
 
 class RequestRepository:
     def __init__(self, connection):
@@ -31,6 +32,40 @@ class RequestRepository:
         ]
         return requests
 
+    def get_requesting_users_for_user(self, requested_user_id):
+        query = """
+        SELECT 
+        requests.status AS r_status,
+        requests.request_from AS r_request_from,
+        requests.request_to AS r_request_to,
+        users.id AS u_id,
+        users.username AS u_username,
+        users.email As u_email,
+        profiles.picture AS p_picture,
+        profiles.name AS p_name,
+        profiles.age AS p_age,
+        profiles.gender AS p_gender,
+        profiles.bio AS p_bio
+        FROM requests
+        JOIN users ON requests.request_from = users.id
+        JOIN profiles ON users.id = profiles.user_id
+        WHERE requests.request_to = %s AND requests.status IS NULL;
+        """
+
+        rows = self._connection.execute(query, [requested_user_id])
+        user_data = [
+            Profile(
+                row["u_id"],
+                User(row["u_id"], row["u_username"], None, row["u_email"]),
+                row["p_picture"],
+                row["p_name"],
+                row["p_age"],
+                row["p_gender"],
+                row["p_bio"]
+            )
+            for row in rows
+        ]
+        return user_data
     # Function returning a status of request between session user and accesed profile user
     # For custom reject/accept/contact details/send request button
     # “” -> “send request”
@@ -47,3 +82,9 @@ class RequestRepository:
             return ""
         else:
             return rows[0]["status"]
+
+
+# SELECT * FROM requests
+# JOIN users ON requests.request_from=users.id
+# JOIN profiles ON users.id=profiles.user_id
+# WHERE requests.request_to=1;
