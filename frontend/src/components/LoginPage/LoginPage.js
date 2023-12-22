@@ -11,7 +11,8 @@ const LoginPage = ({ navigate }) => {
         - FormField component
         - Primary Button component
     */
-  
+   
+  //Prevents from visiting loggin page when already logged it.
   if (window.localStorage.getItem("token")) {
     navigate("/");
   }
