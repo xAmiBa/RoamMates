@@ -49,8 +49,9 @@ def apply_auth_routes(app):
         connection = get_flask_database_connection(app)
         users_repo = UserRepository(connection)
 
-        email = request.form.get("email")
-        password = request.form.get("password")
+        data = request.get_json()
+        email = data.get("email")
+        password = data.get("password")
 
         if users_repo.check_login_details(email, password) is True:
             user = users_repo.find_by_email(email)

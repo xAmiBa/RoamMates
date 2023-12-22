@@ -10,12 +10,17 @@ const LoginPage = ({ navigate }) => {
         - FormField component
         - Primary Button component
     */
-
+  if (window.localStorage.getItem("token")) {
+    navigate("/")
+  }
   // Sets up and inputs ValueState
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
+
+  //Sets up state for errors returned from api when credentials are invalid.
+  const [authError, setAuthError] = useState("");
 
   // List of objects representing FormField
   const form = [
@@ -44,9 +49,25 @@ const LoginPage = ({ navigate }) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // TODO: Send data to the backend.
+
+    let response = await fetch("/users/authentication", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: values.email, password: values.password }),
+    });
+
+    if (response.status != 200) {
+      setAuthError("Email or Password is wrong.");
+      console.log(authError);
+    } else {
+      const data = await response.json();
+      window.localStorage.setItem("token", data.token);
+      navigate("/");
+    }
   };
 
   return (
@@ -54,6 +75,7 @@ const LoginPage = ({ navigate }) => {
       <h1 className="primary-heading" data-cy="login-heading" id="login-title">
         Login
       </h1>
+      {authError && <p className="auth-error">{authError}</p>}
       <form onSubmit={handleSubmit}>
         {form.map((input) => (
           <FormField
@@ -67,7 +89,9 @@ const LoginPage = ({ navigate }) => {
           <PrimaryButton text="Login" id="login-login-button" />
         </div>
         <p>
-          <a href="/users/signup" id="login-signup-redirect">Don't have an account? Go to Sign Up.</a>
+          <a href="/users/signup" id="login-signup-redirect">
+            Don't have an account? Go to Sign Up.
+          </a>
         </p>
       </form>
     </div>

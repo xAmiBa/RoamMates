@@ -7,6 +7,7 @@ from lib.User_repository import UserRepository
 from lib.Preference_repository import PreferenceRepository
 from lib.Request_repository import RequestRepository
 
+
 def apply_profile_routes(app):
     """Profile Router."""
 
@@ -22,7 +23,7 @@ def apply_profile_routes(app):
         profile_repo = ProfileRepository(connection)
         users_list = profile_repo.all()
 
-        token = request.headers['Authorization'][7:]
+        token = request.headers["Authorization"][7:]
         user_id = session.get("user_id")
 
         if token_checker(token, user_id):
@@ -35,7 +36,6 @@ def apply_profile_routes(app):
             response.status_code = 401
 
         return response
-    
 
     @app.route("/profiles/<user_id>", methods=["GET"])
     def user_profile(user_id):
@@ -50,7 +50,7 @@ def apply_profile_routes(app):
         preferences_repo = PreferenceRepository(connection)
         requests_repo = RequestRepository(connection)
 
-        token = request.headers['Authorization'][7:]
+        token = request.headers["Authorization"][7:]
         session_user_id = session.get("user_id")
 
         profile_data = profiles_repo.find_by_id(user_id)
