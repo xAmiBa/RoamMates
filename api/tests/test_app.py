@@ -91,7 +91,8 @@ def test_user_data(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/profiles/data", data={"token": token_mock}
+        f"http://{test_web_address}/profiles/data",
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
     print("RESPONSE HEADERS:", response.headers)
     print("RESPONSE CONTENT:", response.get_data(as_text=True))
@@ -128,7 +129,8 @@ def test_user_data_fail(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/profiles/data", data={"token": token_mock}
+        f"http://{test_web_address}/profiles/data",
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 401
@@ -150,7 +152,8 @@ def test_requests_null(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/requests/null", data={"token": token_mock}
+        f"http://{test_web_address}/requests/null",
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 200
@@ -186,7 +189,8 @@ def test_requests_null_fail(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/requests/null", data={"token": token_mock}
+        f"http://{test_web_address}/requests/null",
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 401
@@ -205,7 +209,7 @@ when request to /requests/true
 """
 
 
-def test_requests_null_fail(web_client, test_web_address):
+def test_requests_true_fail(web_client, test_web_address):
     token_mock = token_generator(2)
     session_data = {"user_id": 1}
 
@@ -214,7 +218,8 @@ def test_requests_null_fail(web_client, test_web_address):
         sess.update(session_data)
 
     response = web_client.get(
-        f"http://{test_web_address}/requests/true", data={"token": token_mock}
+        f"http://{test_web_address}/requests/true",
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 401
@@ -237,7 +242,7 @@ def test_profiles_data(web_client, test_web_address):
 
     response = web_client.get(
         f"http://{test_web_address}/profiles/1",
-        data={"token": token_mock},
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 200
@@ -276,7 +281,7 @@ def test_profiles_data_fail(web_client, test_web_address):
 
     response = web_client.get(
         f"http://{test_web_address}/profiles/1",
-        data={"token": token_mock},
+        headers={"Authorization": f"Bearer {token_mock}"},
     )
 
     assert response.status_code == 401

@@ -22,7 +22,7 @@ def apply_profile_routes(app):
         profile_repo = ProfileRepository(connection)
         users_list = profile_repo.all()
 
-        token = request.form.get("token")
+        token = request.headers['Authorization'][7:]
         user_id = session.get("user_id")
 
         if token_checker(token, user_id):
@@ -50,7 +50,7 @@ def apply_profile_routes(app):
         preferences_repo = PreferenceRepository(connection)
         requests_repo = RequestRepository(connection)
 
-        token = request.form.get("token")
+        token = request.headers['Authorization'][7:]
         session_user_id = session.get("user_id")
 
         profile_data = profiles_repo.find_by_id(user_id)

@@ -24,7 +24,7 @@ def apply_request_routes(app):
         
         status = str(status)
         connection = get_flask_database_connection(app)
-        token = request.form.get("token")
+        token = request.headers['Authorization'][7:]
         user_id = session.get("user_id")
 
         if not token_checker(token, user_id):

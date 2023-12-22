@@ -11,6 +11,7 @@ from routes.requests import apply_request_routes
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
 
+# Adds routes
 apply_profile_routes(app)
 apply_auth_routes(app)
 apply_request_routes(app)
