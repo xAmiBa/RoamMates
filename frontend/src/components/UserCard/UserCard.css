@@ -1,0 +1,19 @@
+.user-card{
+    margin: 15px 25px;
+    flex-direction: column;
+    width: 25%;
+    min-height: 400px;
+    cursor: pointer;
+}
+
+.user-card{
+    display: flex;
+}
+
+img{
+    width: 100%;
+}
+.user-info{
+    display: inline-block;
+    margin: 5px;
+}
