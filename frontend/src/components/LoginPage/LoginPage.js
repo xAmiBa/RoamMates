@@ -1,4 +1,5 @@
 import { useState } from "react";
+import handleLogin from "../../services/auth";
 import FormField from "../FormField/FormField";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import "./LoginPage.css";
@@ -10,8 +11,9 @@ const LoginPage = ({ navigate }) => {
         - FormField component
         - Primary Button component
     */
+  
   if (window.localStorage.getItem("token")) {
-    navigate("/")
+    navigate("/");
   }
   // Sets up and inputs ValueState
   const [values, setValues] = useState({
@@ -38,7 +40,7 @@ const LoginPage = ({ navigate }) => {
       type: "password",
       label: "Password",
       required: true,
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
+      //pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
       errorMessage:
         "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
     },
@@ -51,23 +53,15 @@ const LoginPage = ({ navigate }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    let response = await fetch("/users/authentication", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: values.email, password: values.password }),
-    });
-
-    if (response.status != 200) {
-      setAuthError("Email or Password is wrong.");
-      console.log(authError);
-    } else {
-      const data = await response.json();
-      window.localStorage.setItem("token", data.token);
-      navigate("/");
-    }
+    // Get Api Url from env var.
+    const apiAuthUrl = process.env.REACT_APP_AUTH_API_URL
+    handleLogin(
+      `${apiAuthUrl}`,
+      values.email,
+      values.password,
+      setAuthError,
+      navigate
+    );
   };
 
   return (
