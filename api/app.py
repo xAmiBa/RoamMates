@@ -1,16 +1,7 @@
-from flask import Flask, request, jsonify, session
-
+from flask import Flask
 import os
 import secrets
 
-from lib.User_repository import UserRepository
-from lib.database_connection import get_flask_database_connection
-from token_config import token_checker, token_generator
-from lib.User_repository import UserRepository
-
-
-from lib.Request_repository import RequestRepository
-from lib.Preference_repository import PreferenceRepository
 from routes.profile import apply_profile_routes
 from routes.auth import apply_auth_routes
 from routes.requests import apply_request_routes
