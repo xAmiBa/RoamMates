@@ -44,9 +44,24 @@ const LoginPage = ({ navigate }) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // TODO: Send data to the backend.
+
+    let response = await fetch("/users/authentication", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: values.email, password: values.password }),
+    });
+
+    if (response.status !== 201) {
+      navigate("/login");
+    } else {
+      let data = await response.json();
+      window.localStorage.setItem("token", data.token);
+      navigate("/");
+    }
   };
 
   return (

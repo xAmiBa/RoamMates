@@ -50,7 +50,7 @@ const SignUp = ({ navigate }) => {
     },
     {
       id: 4,
-      name: "userName",
+      name: "username",
       type: "text",
       label: "Username",
       required: true,
@@ -64,16 +64,40 @@ const SignUp = ({ navigate }) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(values);
-    navigate("/login");
-    // TODO: Send data to the backend.
+
+    const formData = new FormData();
+    formData.append("username", values.username);
+    formData.append("email", values.email);
+    formData.append("password", values.password);
+
+    fetch("/users/add", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: formData
+      ,
+      
+    }).then((response) => {
+      if (response.status === 200) {
+        // redirect to avatar choice page while passing history from this page (user email)
+        navigate("/login");
+      } else {
+        navigate("/signup");
+      }
+    });
   };
 
   return (
     <div className="container primary-background-colour">
-      <h1 className="primary-heading" data-cy="signup-heading" id="signup-title" >
+      <h1
+        className="primary-heading"
+        data-cy="signup-heading"
+        id="signup-title"
+      >
         Sign Up
       </h1>
       <form onSubmit={handleSubmit}>
@@ -89,7 +113,9 @@ const SignUp = ({ navigate }) => {
           <PrimaryButton text="Sign Up" id="signup-signup-button" />
         </div>
         <p>
-          <a href="/login" id="signup-login-redirect">Already have an account? Go to Log In.</a>
+          <a href="/login" id="signup-login-redirect">
+            Already have an account? Go to Log In.
+          </a>
         </p>
       </form>
     </div>

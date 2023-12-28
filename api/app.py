@@ -27,12 +27,15 @@ Request: POST
 
 @app.route("/users/add", methods=["POST"])
 def user_signup():
+    #  TODO: user saved as null, why?
+
     connection = get_flask_database_connection(app)
     user_repo = UserRepository(connection)
 
     username = request.form.get('username')
     password = request.form.get('password')
     email = request.form.get('email')
+    print("BACKEND GOT: ", username, password, email)
 
     # Check if user email is unique
     if user_repo.find_by_email(email):
