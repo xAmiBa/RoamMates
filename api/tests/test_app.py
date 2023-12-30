@@ -53,7 +53,8 @@ when request to /users/authentication correct
 def test_user_login(web_client, test_web_address):
     response = web_client.post(
         f"http://{test_web_address}/users/authentication",
-        data={"email": "amina@gmail.com", "password": "amina1"},
+        json = {"email": "amina@gmail.com", "password": "amina1"}
+        #data={"email": "amina@gmail.com", "password": "amina1"},
     )
 
     assert response.status_code == 200
@@ -69,7 +70,7 @@ when request to /users/authentication incorrect
 def test_user_login_fail(web_client, test_web_address):
     response = web_client.post(
         f"http://{test_web_address}/users/authentication",
-        data={"email": "amina@gmail.com", "password": "wrong_password"},
+        json={"email": "amina@gmail.com", "password": "wrong_password"},
     )
 
     assert response.status_code == 401
