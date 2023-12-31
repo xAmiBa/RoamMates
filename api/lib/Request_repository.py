@@ -33,6 +33,14 @@ class RequestRepository:
         return requests
 
     def get_requesting_users_for_user(self, requested_user_id, status_condition):
+        """
+        Repository method to get list of users with pending or approved request
+        to seleced user.
+
+        Args:
+            requested_user_id: Id of user request has been sent to.
+            status_condition: status of request (true if match), (null if pending).
+        """
 
         query = f"""
         SELECT 
