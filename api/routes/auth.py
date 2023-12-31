@@ -21,9 +21,10 @@ def apply_auth_routes(app):
         connection = get_flask_database_connection(app)
         user_repo = UserRepository(connection)
 
-        username = request.form.get("username")
-        password = request.form.get("password")
-        email = request.form.get("email")
+        data = request.get_json()
+        email = data.get("email")
+        username = data.get("username")
+        password = data.get("password")
 
         # Check if user email is unique
         if user_repo.find_by_email(email):

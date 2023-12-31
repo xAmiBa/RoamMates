@@ -13,7 +13,7 @@ when request to /users/add correct
 def test_user_signup_success(web_client, test_web_address):
     response = web_client.post(
         f"http://{test_web_address}/users/add",
-        data={
+        json={
             "email": "test@example.com",
             "password": "test_password",
             "username": "test_username",
@@ -33,7 +33,7 @@ when request to /users/add incorrect - duplicate email
 def test_user_signup_fail(web_client, test_web_address):
     response = web_client.post(
         f"http://{test_web_address}/users/add",
-        data={
+        json={
             "email": "amina@gmail.com",
             "password": "test_password",
             "username": "test_username",
