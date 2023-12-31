@@ -34,6 +34,7 @@ def apply_auth_routes(app):
 
         else:
             user_repo.add(User(None, username, password, email))
+            #TODO: Create empty profile related to user.
             response = jsonify({"message": "OK!"})
             response.status_code = 200
 
