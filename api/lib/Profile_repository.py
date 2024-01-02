@@ -1,4 +1,5 @@
 from lib.Profile import Profile
+from lib.User import User
 
 
 class ProfileRepository:
@@ -6,11 +7,14 @@ class ProfileRepository:
         self._connection = connection
 
     def all(self):
-        rows = self._connection.execute("SELECT * from PROFILES")
+        query = """SELECT
+          users.id, users.username, users.email, profiles.* 
+          from PROFILES JOIN users ON user_id = users.id"""
+        rows = self._connection.execute(query)
         users = [
             Profile(
-                row["id"],
                 row["user_id"],
+                User(row["id"], row["username"], None, row["email"]),
                 row["picture"],
                 row["name"],
                 row["age"],
@@ -22,13 +26,14 @@ class ProfileRepository:
         return users
 
     def find_by_user_id(self, user_id):
-        rows = self._connection.execute(
-            "SELECT * from PROFILES WHERE user_id = %s", [user_id]
-        )
+        query = """SELECT
+          users.id, users.username, users.email, profiles.* 
+          from PROFILES JOIN users ON user_id = users.id WHERE user_id = %s"""
+        rows = self._connection.execute(query, [user_id])
         row = rows[0]
         return Profile(
-            row["id"],
             row["user_id"],
+            User(row["id"], row["username"], None, row["email"]),
             row["picture"],
             row["name"],
             row["age"],

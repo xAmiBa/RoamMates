@@ -113,9 +113,7 @@ const SignUp = ({ navigate }) => {
           <PrimaryButton text="Sign Up" id="signup-signup-button" />
         </div>
         <p>
-          <a href="/login" id="signup-login-redirect">
-            Already have an account? Go to Log In.
-          </a>
+          <a href="/users/login" id="signup-login-redirect">Already have an account? Go to Log In.</a>
         </p>
       </form>
     </div>
