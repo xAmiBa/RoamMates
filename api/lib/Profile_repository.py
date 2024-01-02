@@ -40,3 +40,10 @@ class ProfileRepository:
             row["gender"],
             row["bio"],
         )
+
+# TODO: Finish query to add new profile with user object
+    def add(self, user_object):
+        query = f"""
+        INSERT INTO profiles (
+        u
+        )"""

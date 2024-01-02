@@ -75,9 +75,9 @@ Displays user information and travel preferences.
             <div className="row bio-container">
                     {user.bio}
                     </div>
-            
+
         </div>
-        
+
     )
 }
-export default UserDetail
+export default UserDetail 

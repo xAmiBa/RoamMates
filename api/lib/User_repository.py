@@ -13,6 +13,7 @@ class UserRepository:
         ]
         return users
 
+# TODO: not needed, signup will be handled through profiles as they include User object now
     def add(self, user_object):
         self._connection.execute(
             "INSERT INTO users (username, password, email) VALUES (%s, %s, %s);",
