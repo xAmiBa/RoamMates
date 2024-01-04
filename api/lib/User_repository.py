@@ -13,11 +13,22 @@ class UserRepository:
         ]
         return users
 
+    """
+    Function adds new user to users table
+    and new profile with user_id and null values
+    """
     def add(self, user_object):
-        self._connection.execute(
-            "INSERT INTO users (username, password, email) VALUES (%s, %s, %s);",
-            [user_object.username, user_object.password, user_object.email],
+        query = """
+        WITH create_user AS (
+        INSERT INTO users (username, password, email)
+        VALUES (%s, %s, %s)
+        RETURNING id
         )
+        INSERT INTO profiles (user_id, picture, name, age, gender, bio)
+        SELECT id, null, null, null, null, null FROM create_user;
+        """
+
+        self._connection.execute(query, [user_object.username, user_object.password, user_object.email])
 
     def find_by_id(self, user_id):
         rows = self._connection.execute("SELECT * from USERS WHERE id = %s", [user_id])

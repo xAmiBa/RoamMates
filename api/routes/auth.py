@@ -10,36 +10,6 @@ from lib.User_repository import UserRepository
 def apply_auth_routes(app):
     """Auth Router."""
 
-    @app.route("/users/add", methods=["POST"])
-    def user_signup():
-        """
-        Route: /users/add
-        Request: POST
-        Signup, adds user to Users table.
-        """
-
-        connection = get_flask_database_connection(app)
-        user_repo = UserRepository(connection)
-
-        data = request.get_json()
-        email = data.get("email")
-        username = data.get("username")
-        password = data.get("password")
-
-        # Check if user email is unique
-        if user_repo.find_by_email(email):
-            print("User already exists:")
-            response = jsonify({"message": "Credentials error"})
-            response.status_code = 401
-
-        else:
-            user_repo.add(User(None, username, password, email))
-            #TODO: Create empty profile related to user.
-            response = jsonify({"message": "OK!"})
-            response.status_code = 200
-
-        return response
-
     @app.route("/users/authentication", methods=["POST"])
     def user_login():
         """
