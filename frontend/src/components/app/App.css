@@ -1,9 +1,9 @@
-.primary-background-colour{
+/* .primary-background-colour{
 background-color: #F4F4F4
-}
-.secondary-background-colour{
+} */
+/* .secondary-background-colour{
 background-color: #E1F5FE ;
-}
+} */
 .primary-text-colour{
 color: #000000;
 }
@@ -14,13 +14,13 @@ color: #666666;
     font-size: 72px;
 }
 .container{
-    width: 50%;
+    /* width: 50%; */
     margin: 300px auto;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 0 10px 5px grey;
+    /* box-shadow: 0 0 10px 5px grey; */
 
 }
 .shadow-effect{
@@ -35,9 +35,6 @@ form{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-body{
-    background-image: url("../../../public/map_crop.jpeg");;
 }
 
 .auth-error {

@@ -1,5 +1,44 @@
 .description {
     width: 75%;
-    font-size: 30px;
-    font-style: italic;
+    font-size: 25px;
+    font-family: "Arial";
+    font-style: bold;
+    margin-top: -180px;
+    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
+
+.primary-heading {
+    font-family: "Arial Black", "Arial Bold";
+    position: relative;
+}
+
+
+.primary-heading .first-word {
+    color: rgb(26, 165, 158);
+    font-size: 140px;
+    position: relative;
+    right: 35px;
+    top: -100px
+}
+
+.primary-heading .second-word {
+    color: rgb(0, 0, 0);
+    font-size: 80px;
+    position: relative;
+    bottom: 50px;
+    left: 100px;
+    top: -160px
+}
+
+.container {
+    width: 85%;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px; */
+}
+
+.primary-button-container {
+    display: flex;
+    gap: 30px;
+    /* margin-top: -120px;
+    margin-bottom: 30px; */
+  }

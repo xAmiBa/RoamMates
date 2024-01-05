@@ -1,1 +1,2 @@
-export const descirpiotn = "Introducing Travel Explorer, a new and exciting feature within our social app designed to ignite your wanderlust and connect you with like-minded travelers from around the globe!"
+export const descirpiotn = "Building Friendships One Adventure at a Time!"
+export const motto =  "Match, Roam, Connect."

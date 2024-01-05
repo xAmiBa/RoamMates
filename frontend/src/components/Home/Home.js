@@ -1,7 +1,8 @@
 import "./Home.css";
 import "../PrimaryButton/PrimaryButton";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
-import { descirpiotn } from "../../constants/description";
+import LogoAnimation from "../LogoAnimation/LogoAnimation";
+import { descirpiotn, motto } from "../../constants/description";
 
 const Home = ({ navigate }) => {
   /* 
@@ -19,12 +20,20 @@ const Home = ({ navigate }) => {
 
   return (
     <div className="container primary-background-colour">
+      <LogoAnimation width="40%"/>
       <h1 className="primary-heading" data-cy="head-content" id="home-title">
-        Roam Mates
+        <spac className="first-word">Roam</spac>
+        <br/>
+        <spac className="second-word">mates.</spac>
       </h1>
-      <p className="description" id="home-app-description">{descirpiotn}</p>
-      <PrimaryButton text="Login" onClick={navigateToLogin} id="home-login-button"/>
-      <PrimaryButton text="Sign Up" onClick={navigateToSignUp} id="home-signup-button"/>
+      <p className="description" id="home-app-description">
+        <spac>{motto} </spac> <br/>
+        <spac>{descirpiotn}</spac>
+      </p>
+      <div className="primary-button-container">
+        <PrimaryButton text="Login" onClick={navigateToLogin} id="home-login-button"/>
+        <PrimaryButton text="Sign Up" onClick={navigateToSignUp} id="home-signup-button"/>
+      </div>
     </div>
   );
 };
