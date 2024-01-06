@@ -51,12 +51,10 @@ const SideBar = ({navigate}) => {
                     </div>
                 </div>
             {links.map((link) => (
-
                 <div className="side-bar-link">
                     {/* <i className={link.icon}/> */}
                     <a href={link.url} data-cy="button-text-content">
                     <FontAwesomeIcon icon={link.icon} style={{ marginRight: '15px' }}/>
-
                         {link.text}
                     </a>
                 </div>
