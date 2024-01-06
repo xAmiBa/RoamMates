@@ -1,57 +1,56 @@
 import React from "react";
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import LogoAnimation from "../LogoAnimation/LogoAnimation";
 import "./SideBar.css"
-
 
 const SideBar = ({navigate}) => {
     const links = [
         {
             id:1,
             text:"Home",
-            onClick(){
-                navigate("/")
-            }
+            url: "/",
+            icon: ""
         },
         {
             id:2,
             text:"Matches",
-            onClick(){
-                navigate("/matches")
-            }
+            url: "/matches",
+            icon: ""
         },
         {
             id:3,
             text:"Requests",
-            onClick(){
-                navigate("/requests")
-            }
+            url: "/requests",
+            icon: ""
         },
         {
             id:4,
             text:"My Profile",
-            onClick(){
-                navigate("/myprofile")
-            }
+            url: "/",
+            icon: "/myprofile"
         },
         {
             id:5,
             text:"Log Out",
-            onClick(){
-                navigate("#")
-            }
+            url: "#",
+            icon: ""
         },
     ]
 
     return (
-        <div className="side-bar primary-background-colour" id="sidebar">
+        <div className="side-bar" id="sidebar">
+                <div className="logo-image">
+                    <LogoAnimation width="60px"/>
+                    <div className="logo-text">
+                        Roam Mates
+                    </div>
+                </div>
             {links.map((link) => (
-                <PrimaryButton 
-                key={link.id}
-                text={link.text}
-                onClick={link.onClick}/>
+                    <a href={link.url}>
+                        {link.text}
+                    </a>
             ))}
+            </div>
 
-        </div>
     )
 }
 export default SideBar

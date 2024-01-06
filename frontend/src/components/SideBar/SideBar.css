@@ -1,11 +1,62 @@
-.side-bar{
-    height: 100%;
-    width: 160px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
+/* background-color: rgb(26, 165, 158); */
+.side-bar {
+    height: 100%; /* 100% Full-height */
+    width: 180px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
     left: 0;
-}
-a{
+    background-color: rgb(26, 165, 158); /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 40px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* The navigation menu links */
+  .side-bar a {
+    padding: 25px 0px 25px 100px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fafafa;
     display: block;
+    transition: 0.3s;
+    width: 100%;
 }
+  
+  /* When you mouse over the navigation links, change their color */
+  .side-bar a:hover {
+    color: #c37f2b;
+    background: white;
+  }
+  
+  /* Position and style the close button (top right corner) */
+  .side-bar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+.logo-image {
+    filter: invert(100%);
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 15px;
+    padding-bottom: 30px;
+}
+
+.logo-text {
+    color: rgb(0, 0, 0);
+    font-family: "Arial Black";
+    font-size: 20px;
+    padding-bottom: 20px;
+    line-height: 0.9;
+    margin-top: 12px;
+
+}
+
