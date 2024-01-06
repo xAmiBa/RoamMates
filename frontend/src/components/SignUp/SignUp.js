@@ -2,6 +2,7 @@ import { useState } from "react";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import FormField from "../FormField/FormField";
 import "../app/App.css";
+import handleSignup from "../../services/signup";
 
 const SignUp = ({ navigate }) => {
   /* Component to display Sign Up page.
@@ -18,6 +19,9 @@ const SignUp = ({ navigate }) => {
     confirmPassword: "",
     username: "",
   });
+
+  //Sets up state for errors returned from api when credentials are invalid.
+  const [signupError, setSignupError] = useState("");
 
   // List of objects representing FormField
   const form = [
@@ -50,7 +54,7 @@ const SignUp = ({ navigate }) => {
     },
     {
       id: 4,
-      name: "userName",
+      name: "username",
       type: "text",
       label: "Username",
       required: true,
@@ -66,9 +70,16 @@ const SignUp = ({ navigate }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(values);
-    navigate("/login");
-    // TODO: Send data to the backend.
+    // Get Api Url from env var.
+    const apiAddUserUrl = process.env.REACT_APP_ADD_USER_API_URL
+    handleSignup(
+      `${apiAddUserUrl}`,
+      values.username,
+      values.email,
+      values.password,
+      setSignupError,
+      navigate
+    );
   };
 
   return (
