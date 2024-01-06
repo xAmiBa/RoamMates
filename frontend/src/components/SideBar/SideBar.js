@@ -1,6 +1,12 @@
 import React from "react";
 import LogoAnimation from "../LogoAnimation/LogoAnimation";
 import "./SideBar.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faBell, faSuitcaseRolling, faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+// run: npm i --save @fortawesome/fontawesome-svg-core
+// run: npm i --save @fortawesome/free-solid-svg-icons
+// run: npm i --save @fortawesome/react-fontawesome@latest
+
 
 const SideBar = ({navigate}) => {
     const links = [
@@ -8,46 +14,52 @@ const SideBar = ({navigate}) => {
             id:1,
             text:"Home",
             url: "/",
-            icon: ""
+            icon: faHouse
         },
         {
             id:2,
             text:"Matches",
             url: "/matches",
-            icon: ""
+            icon: faSuitcaseRolling
         },
         {
             id:3,
             text:"Requests",
             url: "/requests",
-            icon: ""
+            icon: faBell
         },
         {
             id:4,
             text:"My Profile",
-            url: "/",
-            icon: "/myprofile"
+            url: "/myprofile",
+            icon: faGear
         },
         {
             id:5,
             text:"Log Out",
             url: "#",
-            icon: ""
+            icon: faRightFromBracket
         },
     ]
 
     return (
         <div className="side-bar" id="sidebar">
-                <div className="logo-image">
+                <div className="logo">
                     <LogoAnimation width="60px"/>
                     <div className="logo-text">
                         Roam Mates
                     </div>
                 </div>
             {links.map((link) => (
-                    <a href={link.url}>
+
+                <div className="side-bar-link">
+                    {/* <i className={link.icon}/> */}
+                    <a href={link.url} data-cy="button-text-content">
+                    <FontAwesomeIcon icon={link.icon} style={{ marginRight: '15px' }}/>
+
                         {link.text}
                     </a>
+                </div>
             ))}
             </div>
 
