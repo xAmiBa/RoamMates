@@ -6,7 +6,6 @@ import SignUp from "../SignUp/SignUp";
 import React from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import UserDetail from "../UserDetail/UserDetail";
-
 import AuthLayout from "../AuthLayout/AuthLayout";
 
 const App = () => {
@@ -26,7 +25,7 @@ const App = () => {
           element={<SignUp navigate={useNavigate()} />}
         ></Route>
 
-        <Route path="/" element={<AuthLayout navigate={useNavigate()}/>}>
+        <Route path="/" element={<AuthLayout navigate={useNavigate()} />}>
           <Route
             path=""
             element={
@@ -45,7 +44,6 @@ const App = () => {
               <UserList navigate={useNavigate()} componentVersion="requests" />
             }
           ></Route>
-          {/* TODO: Add userID URL param */}
           <Route
             path="/user/id/:id"
             element={<UserDetail navigate={useNavigate()} />}
