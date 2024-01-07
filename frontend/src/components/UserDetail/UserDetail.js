@@ -61,9 +61,9 @@ Displays user information and travel preferences.
                 </div>
                 <div className="col">
                 <div className="row preferences-container">
-                    {preferences.map((preference) => (
+                    {preferences.map((preference, index) => (
                         <div className="icon-container">
-                        <span className="icon-wrapper"><FontAwesomeIcon icon={preference.icon} size="2xl"/>
+                        <span className="icon-wrapper"><FontAwesomeIcon key={index} icon={preference.icon} size="2xl"></FontAwesomeIcon>
                             </span>
                         <span className="preference-text">{preference.preferenceText}:</span>
                         <span className="preference-value">{preference.preferenceValue}</span>

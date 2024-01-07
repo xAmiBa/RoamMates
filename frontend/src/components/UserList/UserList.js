@@ -42,8 +42,8 @@ Children:
         <div className="container primary-background-colour">
             <h1 className="primary-heading" id="page-header" data-cy="test-heading">{heading}</h1>
             <div id="home-user-list-container" className="user-list-container">
-                {userList.map((user) => (
-                    <UserCard user={user} navigate={props.navigate}></UserCard>
+                {userList.map((user, index) => (
+                    <UserCard key={index} user={user} navigate={props.navigate}></UserCard>
                 ))}
                 </div>
         </div>
