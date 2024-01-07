@@ -7,6 +7,8 @@ import { faCakeCandles } from '@fortawesome/free-solid-svg-icons'
 import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons'
 import { faUmbrellaBeach } from '@fortawesome/free-solid-svg-icons'
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons'
+import { faGenderless, faVenus, faMars } from "@fortawesome/free-solid-svg-icons";
+
 import { useState } from "react"
 
 const UserDetail = ({navigate}) => {
@@ -52,31 +54,36 @@ Displays user information and travel preferences.
 
         <div className="profile-detail-container primary-background-colour">
             <div className="row">
-            <h1 className="secondary-heading">{user.userName}, {user.age}</h1>
-            <div className="title ">Travel Buddy Preferences</div>
+            <h1 className="secondary-heading">Hi, I'm {user.userName}!</h1>
             </div>
             <div className="row">
                 <div className="col">
-                    <div className="image-container profile-image">
-                        <img src="avatar.webp"/>
-                    </div>
+                <div className="image-container-profile">
+                <img src="avatar.webp"/>
+            </div>
                 </div>
                 <div className="col">
-                <div className="row preferences-container">
-                    {preferences.map((preference) => (
+                <div className="row bio-container">
+                    {/* TODO: customizable component to accept / reject / none */}
+                </div>
+                <div className="row bio-container">
+                    {user.bio}
+                </div>
+                </div>
+            </div>
+            
+            
+            <div className="row preferences-container">
+                {preferences.map((preference) => (
                         <div className="icon-container">
                         <span className="icon-wrapper"><FontAwesomeIcon icon={preference.icon} size="2xl"/>
-                            </span>
+                            </span><br/>
                         <span className="preference-text">{preference.preferenceText}:</span>
+                        <br/>
                         <span className="preference-value">{preference.preferenceValue}</span>
                     </div>
                     ))}
             </div>
-                </div>
-            </div>
-            <div className="row bio-container">
-                    {user.bio}
-                    </div>
             
         </div>
         </div>
