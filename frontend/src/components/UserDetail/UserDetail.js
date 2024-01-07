@@ -48,6 +48,8 @@ Displays user information and travel preferences.
 
 // TODO: Write fetch function to get user data.
     return(
+        <div className="profile-detail">
+
         <div className="profile-detail-container primary-background-colour">
             <div className="row">
             <h1 className="secondary-heading">{user.userName}, {user.age}</h1>
@@ -76,6 +78,7 @@ Displays user information and travel preferences.
                     {user.bio}
                     </div>
             
+        </div>
         </div>
         
     )

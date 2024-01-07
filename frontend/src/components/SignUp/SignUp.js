@@ -83,7 +83,7 @@ const SignUp = ({ navigate }) => {
   };
 
   return (
-    <div className="container primary-background-colour">
+    <div className="primary-container primary-background-colour">
       <h1 className="primary-heading" data-cy="signup-heading" id="signup-title" >
         Sign Up
       </h1>

@@ -66,7 +66,7 @@ const LoginPage = ({ navigate }) => {
   };
 
   return (
-    <div className="container primary-background-colour">
+    <div className="primary-container primary-background-colour">
       <h1 className="primary-heading" data-cy="login-heading" id="login-title">
         Login
       </h1>
