@@ -1,12 +1,10 @@
-.container{
-    /* margin-top: 100px; */
-    margin-left: 180px;
+.container {
+  margin-left: 180px;
 }
 
-.user-list-container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+.user-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-

@@ -1,44 +1,43 @@
-.primary-text-colour{
-color: #000000;
+.primary-text-colour {
+  color: #000000;
 }
-.secondary-text-colour{
-color: #666666;
+.secondary-text-colour {
+  color: #666666;
 }
-.primary-heading{
-    font-size: 52px;
+.primary-heading {
+  font-size: 52px;
 }
 .container {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
 
 .primary-container {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
 
-
-form{
-    width: 50%;
+form {
+  width: 50%;
 }
-.button-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-error {
-    color: red;
-    padding-bottom: 15px;
+  color: red;
+  padding-bottom: 15px;
 }

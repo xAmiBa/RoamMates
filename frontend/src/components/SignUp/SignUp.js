@@ -71,20 +71,24 @@ const SignUp = ({ navigate }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Get Api Url from env var.
-    const apiAddUserUrl = process.env.REACT_APP_ADD_USER_API_URL
+    const apiAddUserUrl = process.env.REACT_APP_ADD_USER_API_URL;
     handleSignup(
       `${apiAddUserUrl}`,
       values.username,
       values.email,
       values.password,
       setSignupError,
-      navigate
+      navigate,
     );
   };
 
   return (
     <div className="primary-container primary-background-colour">
-      <h1 className="primary-heading" data-cy="signup-heading" id="signup-title" >
+      <h1
+        className="primary-heading"
+        data-cy="signup-heading"
+        id="signup-title"
+      >
         Sign Up
       </h1>
       <form onSubmit={handleSubmit}>
@@ -100,7 +104,9 @@ const SignUp = ({ navigate }) => {
           <PrimaryButton text="Sign Up" id="signup-signup-button" />
         </div>
         <p>
-          <a href="/users/login" id="signup-login-redirect">Already have an account? Go to Log In.</a>
+          <a href="/users/login" id="signup-login-redirect">
+            Already have an account? Go to Log In.
+          </a>
         </p>
       </form>
     </div>

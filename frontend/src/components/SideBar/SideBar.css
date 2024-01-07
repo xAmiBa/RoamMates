@@ -1,58 +1,56 @@
-/* background-color: rgb(26, 165, 158); */
 .side-bar {
-    height: 100%; /* 100% Full-height */
-    width: 180px; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: rgb(26, 165, 158); /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 40px;
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-  }
-  
-  /* The navigation menu links */
-  .side-bar a {
-    padding: 25px 0px 25px 0px;
-    text-decoration: none;
-    font-size: 16px;
-    color: #fafafa;
-    display: block;
-    transition: 0.3s;
-    width: 100%;
-    padding-left: 40px;
+  height: 100%;
+  width: 180px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(26, 165, 158); /* Black*/
+  overflow-x: hidden;
+  padding-top: 40px;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
 }
-  
-  /* When you mouse over the navigation links, change their color */
-  .side-bar a:hover {
-    color: #c37f2b;
-    background: white;
-  }
-  
- 
+
+/* The navigation menu links */
+.side-bar a {
+  padding: 25px 0px 25px 0px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #fafafa;
+  display: block;
+  transition: 0.3s;
+  width: 100%;
+  padding-left: 40px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.side-bar a:hover {
+  color: #c37f2b;
+  background: white;
+}
+
 .logo {
-    filter: invert(100%);
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
-    margin-left: 15px;
-    padding-bottom: 30px;
+  filter: invert(100%);
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 15px;
+  padding-bottom: 30px;
 }
 
 .logo-text {
-    color: rgb(0, 0, 0);
-    font-family: "Arial Black";
-    font-size: 20px;
-    padding-bottom: 20px;
-    line-height: 0.9;
-    margin-top: 12px;
+  color: rgb(0, 0, 0);
+  font-family: "Arial Black";
+  font-size: 20px;
+  padding-bottom: 20px;
+  line-height: 0.9;
+  margin-top: 12px;
 }
 
 .side-bar-link {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 }
