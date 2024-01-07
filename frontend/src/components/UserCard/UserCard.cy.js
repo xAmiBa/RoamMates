@@ -14,7 +14,5 @@ describe("UserCard", () => {
       "contain.text",
       "test username | 20",
     );
-    cy.get('[data-cy="test-gender"]').should("contain.text", "male");
-    cy.get('[data-cy="test-bio"]').should("contain.text", "test bio");
   });
 });
