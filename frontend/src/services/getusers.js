@@ -11,7 +11,6 @@ Params:
 const useGetUsers = (
     apiUrl, token, setUsers, setError, heading
     ) => {
-        console.log(apiUrl)
         useEffect(()=>{
             // const token = window.localStorage.getItem("token")
             fetch(apiUrl,

@@ -37,7 +37,7 @@ const SideBar = ({navigate}) => {
             id:5,
             text:"Log Out",
             onClick(){
-                logout()
+                logout(navigate)
             }
         },
     ]
