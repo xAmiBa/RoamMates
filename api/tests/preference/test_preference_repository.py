@@ -19,9 +19,23 @@ def test_get_preferences_by_user_id(db_connection):
     )
 
 
-def test_setup_preferences(db_connection):
+def test_setup_preferences_for_new_user(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = PreferenceRepository(db_connection)
-    new_preferences = Preference(1, 1, "[25, 30]", "female", "Africa", "winter", "beach")
-    repository.setup_preferences(new_preferences)
+    new_preferences = Preference(
+        None, 3, "[25, 30]", "female", "Africa", "winter", "beach"
+    )
+    repository.setup_preferences(new_preferences, "insert")
+    assert repository.find_by_user_id(3) == Preference(
+        3, 3, "[25, 30]", "female", "Africa", "winter", "beach"
+    )
+
+
+def test_setup_preferences_for_existing_user(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = PreferenceRepository(db_connection)
+    new_preferences = Preference(
+        1, 1, "[25, 30]", "female", "Africa", "winter", "beach"
+    )
+    repository.setup_preferences(new_preferences, "update")
     assert repository.find_by_user_id(1) == new_preferences
