@@ -1,7 +1,7 @@
 import React from "react";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import "./SideBar.css"
-
+import logout from "../../services/logout";
 
 const SideBar = ({navigate}) => {
     const links = [
@@ -37,7 +37,7 @@ const SideBar = ({navigate}) => {
             id:5,
             text:"Log Out",
             onClick(){
-                navigate("#")
+                logout()
             }
         },
     ]
