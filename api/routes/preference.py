@@ -25,8 +25,6 @@ def apply_preference_routes(app):
         user_id = session.get("user_id")
 
         if not token_checker(token, user_id):
-            print("TOKEN:", token)
-            print("USER_ID:", user_id)
             response = jsonify({"message": "Invalid credentials"})
             response.status_code = 401
             return response
