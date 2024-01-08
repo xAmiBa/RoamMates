@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 
-
 /** 
-Function to handle auth via api.
+Service to get list of users from API.
 
 Params:
-    @param apiUrl string - api Endpoint.
-
+    @param apiUrl = string - api Endpoint
+    @param token = Auth token
+    @param setUsers = functions to set list of users
+    @param setError = functions to set list of errors
+    @param heading = string - determines the type of view for our user list 
 */
 const useGetUsers = (
     apiUrl, token, setUsers, setError, heading
