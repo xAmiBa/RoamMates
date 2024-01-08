@@ -9,7 +9,7 @@ Params:
 
 */
 const useGetUsers = (
-    apiUrl, token, setUsers, setError
+    apiUrl, token, setUsers, setError, heading
     ) => {
         console.log(apiUrl)
         useEffect(()=>{
@@ -25,7 +25,7 @@ const useGetUsers = (
             .catch((error) => {
                 setError(error)
             })
-        }, [])
+        }, [heading])
  
 };
 

@@ -41,7 +41,7 @@ Children:
             apiUrl=process.env.REACT_APP_MATCHES_URL
             break;
     }
-   useGetUsers(apiUrl, window.localStorage.getItem("token"), setUserList, setError)
+   useGetUsers(apiUrl, window.localStorage.getItem("token"), setUserList, setError, heading)
 
 // TODO: Add API request to change state of the UserList.
 
