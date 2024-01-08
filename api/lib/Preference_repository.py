@@ -35,3 +35,19 @@ class PreferenceRepository:
             row["season"],
             row["category"],
         )
+    
+    def setup_preferences(self, preference_object):
+        self._connection.execute(
+            """
+            UPDATE preferences SET age_slot = %s, gender = %s, continent = %s, season = %s, category = %s
+            WHERE user_id = %s;
+            """, [
+                preference_object.age_slot,
+                preference_object.gender,
+                preference_object.continent,
+                preference_object.season,
+                preference_object.category,
+                preference_object.user_id
+                ]
+
+        )
