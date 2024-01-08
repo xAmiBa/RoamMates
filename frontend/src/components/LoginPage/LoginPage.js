@@ -11,7 +11,7 @@ const LoginPage = ({ navigate }) => {
         - FormField component
         - Primary Button component
     */
-   
+
   //Prevents from visiting loggin page when already logged it.
   if (window.localStorage.getItem("token")) {
     navigate("/");
@@ -55,18 +55,18 @@ const LoginPage = ({ navigate }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     // Get Api Url from env var.
-    const apiAuthUrl = process.env.REACT_APP_AUTH_API_URL
+    const apiAuthUrl = process.env.REACT_APP_AUTH_API_URL;
     handleLogin(
       `${apiAuthUrl}`,
       values.email,
       values.password,
       setAuthError,
-      navigate
+      navigate,
     );
   };
 
   return (
-    <div className="container primary-background-colour">
+    <div className="primary-container primary-background-colour">
       <h1 className="primary-heading" data-cy="login-heading" id="login-title">
         Login
       </h1>
