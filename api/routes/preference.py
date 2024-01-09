@@ -9,12 +9,12 @@ from lib.Preference import Preference
 def apply_preference_routes(app):
     """Profile Router."""
 
-    @app.route("/preferences/new", methods=["POST"])
+    @app.route("/preferences/data", methods=["PUT"])
     def setup_preferences_data():
         """
         Posts preferences data
-        Route: /preferences/new
-        Request: POST
+        Route: /preferences/data
+        Request: PUT
         """
 
         connection = get_flask_database_connection(app)
@@ -35,10 +35,9 @@ def apply_preference_routes(app):
         # compare both data and skip None values
         if preferences:
             for key in ["age_slot", "gender", "continent", "season", "category"]:
-                new_value = data.get(key)
-                if new_value is not None:
-                    setattr(preferences, key, data[key])
-            preferences_repo.setup_preferences(preferences, "update")
+                setattr(preferences, key, data[key])
+
+            preferences_repo.update_preferences(preferences)
 
         else:
             # create new preferences object
@@ -51,7 +50,7 @@ def apply_preference_routes(app):
                 data.get("season"),
                 data.get("category"),
             )
-            preferences_repo.setup_preferences(new_preferences, "insert")
+            preferences_repo.insert_preferences(new_preferences)
 
         token = token_generator(user_id)
         response = jsonify({"message": "OK!", "token": token})
