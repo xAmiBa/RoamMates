@@ -1,55 +1,66 @@
 import React from "react";
-import PrimaryButton from "../PrimaryButton/PrimaryButton";
+import LogoAnimation from "../LogoAnimation/LogoAnimation";
 import "./SideBar.css";
-import logout from "../../services/logout";
-
-/*
-Siderbar component for navigation to Home, Matches, Requests, My Profile and Log Out pages.
-*/
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faBell,
+  faSuitcaseRolling,
+  faGear,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+// run: npm i --save @fortawesome/fontawesome-svg-core
+// run: npm i --save @fortawesome/free-solid-svg-icons
+// run: npm i --save @fortawesome/react-fontawesome@latest
 
 const SideBar = ({ navigate }) => {
   const links = [
     {
       id: 1,
       text: "Home",
-      onClick() {
-        navigate("/");
-      },
+      url: "/",
+      icon: faHouse,
     },
     {
       id: 2,
       text: "Matches",
-      onClick() {
-        navigate("/matches");
-      },
+      url: "/matches",
+      icon: faSuitcaseRolling,
     },
     {
       id: 3,
       text: "Requests",
-      onClick() {
-        navigate("/requests");
-      },
+      url: "/requests",
+      icon: faBell,
     },
     {
       id: 4,
       text: "My Profile",
-      onClick() {
-        navigate("/myprofile");
-      },
+      url: "/myprofile",
+      icon: faGear,
     },
     {
       id: 5,
       text: "Log Out",
-      onClick() {
-        logout(navigate);
-      },
+      url: "#",
+      icon: faRightFromBracket,
     },
   ];
 
   return (
-    <div className="side-bar primary-background-colour" id="sidebar">
+    <div className="side-bar" id="sidebar">
+      <div className="logo">
+        <LogoAnimation width="60px" />
+        <div className="logo-text">Roam Mates</div>
+      </div>
       {links.map((link) => (
-        <PrimaryButton key={link.id} text={link.text} onClick={link.onClick} />
+        <div className="side-bar-link">
+          {/* <i className={link.icon}/> */}
+          <a href={link.url} data-cy="button-text-content">
+            <FontAwesomeIcon icon={link.icon} style={{ marginRight: "15px" }} />
+            {link.text}
+          </a>
+        </div>
       ))}
     </div>
   );

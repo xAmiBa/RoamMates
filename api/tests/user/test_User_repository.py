@@ -5,33 +5,16 @@ from lib.Profile import Profile
 
 """
 Test if all users retrieved
+only first and last user due to length of database
 """
 
 
 def test_get_all_users(db_connection):
     db_connection.seed("seeds/roammates_seed.sql")
     repository = UserRepository(db_connection)
-    assert repository.all() == [
-        User(1, "amina", "amina1", "amina@gmail.com"),
-        User(2, "daniel", "daniel1", "daniel@gmail.com"),
-    ]
-
-
-"""
-Test add new user
-"""
-
-
-def test_post_new_user(db_connection):
-    db_connection.seed("seeds/roammates_seed.sql")
-    repository = UserRepository(db_connection)
-    repository.add(User(None, "testname", "testpassword", "testemail"))
-    assert repository.all() == [
-        User(1, "amina", "amina1", "amina@gmail.com"),
-        User(2, "daniel", "daniel1", "daniel@gmail.com"),
-        User(3, "testname", "testpassword", "testemail"),
-    ]
-
+    assert repository.all()[0] == User(1, "amina", "amina1", "amina@gmail.com")
+    assert repository.all()[-1] == User(50, 'wanderlust_dreaming', 'dreaming789', 'wanderlust_dreaming@example.com')
+    
 
 """
 Test if user by id found
@@ -107,37 +90,14 @@ def test_add_new_user(db_connection):
     new_user = User(None, "test", "testpassword", "testemail")
     user_repo.add(new_user)
 
-    assert user_repo.all() == [
-        User(1, "amina", "amina1", "amina@gmail.com"),
-        User(2, "daniel", "daniel1", "daniel@gmail.com"),
-        User(3, "test", "testpassword", "testemail")
-    ]
-    assert profile_repo.all() == [
-        Profile(
-            1,
-            User(1, "amina", None, "amina@gmail.com"),
-            "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg",
-            "Amina",
-            "28",
-            "Female",
-            "Test bio Amina",
-        ),
-        Profile(
-            2,
-            User(2, "daniel", None, "daniel@gmail.com"),
-            "https://www.treasury.gov.ph/wp-content/uploads/2022/01/male-placeholder-image.jpeg",
-            "Daniel",
-            "24",
-            "Male",
-            "Test bio Daniel",
-        ),
-        Profile(
-            3,
-            User(3, "test", None, "testemail"),
-            None,
-            None,
-            None,
-            None,
-            None
+    assert user_repo.all()[-1] == User(51, "test", "testpassword", "testemail")
+
+    assert profile_repo.all()[-1] == Profile(
+        51,
+        User(51, "test", None, "testemail"),
+        None,
+        None,
+        None,
+        None,
+        None
         )
-    ]

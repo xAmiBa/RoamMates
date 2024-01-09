@@ -1,46 +1,43 @@
-.primary-background-colour{
-background-color: #F4F4F4
+.primary-text-colour {
+  color: #000000;
 }
-.secondary-background-colour{
-background-color: #E1F5FE ;
+.secondary-text-colour {
+  color: #666666;
 }
-.primary-text-colour{
-color: #000000;
+.primary-heading {
+  font-size: 52px;
 }
-.secondary-text-colour{
-color: #666666;
-}
-.primary-heading{
-    font-size: 72px;
-}
-.container{
-    width: 50%;
-    margin: 300px auto;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 0 10px 5px grey;
-
-}
-.shadow-effect{
-    box-shadow: 0 0 10px 5px grey;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
 
-form{
-    width: 50%;
+.primary-container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
-.button-container{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+form {
+  width: 50%;
 }
-body{
-    background-image: url("../../../public/map_crop.jpeg");;
+.button-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-error {
-    color: red;
-    padding-bottom: 15px;
+  color: red;
+  padding-bottom: 15px;
 }

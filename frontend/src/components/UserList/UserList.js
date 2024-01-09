@@ -3,8 +3,6 @@ import "./UserList.css";
 import UserCard from "../UserCard/UserCard";
 import users from "../../constants/userList";
 import SideBar from "../SideBar/SideBar";
-import useGetUsers from "../../services/getusers";
-import { useEffect } from "react";
 
 const UserList = (props) => {
   /*
@@ -17,10 +15,8 @@ Children:
 
   // State that holds list of users.
   // TODO: Change to empty list
-  const [userList, setUserList] = useState([]);
-  const [error, setError] = useState(null);
+  const [userList, setUserList] = useState(users);
 
-  let apiUrl;
   // Variable to control version of the list of users.
   const componentVersion = props.componentVersion;
 
@@ -29,55 +25,28 @@ Children:
   switch (componentVersion) {
     case "home":
       heading = "Find Your Roam Mates!";
-      apiUrl = process.env.REACT_APP_USERS_PROFILES_URL;
       break;
     case "requests":
       heading = "Requests";
-      apiUrl = process.env.REACT_APP_REQUESTS_URL;
       break;
     default:
-      heading = "Matches";
-      apiUrl = process.env.REACT_APP_MATCHES_URL;
+      heading = "My Matches";
       break;
   }
-  useGetUsers(
-    apiUrl,
-    window.localStorage.getItem("token"),
-    setUserList,
-    setError,
-    heading
-  );
 
   // TODO: Add API request to change state of the UserList.
 
   return (
     <>
-      {/* {error && <span>{error}</span>}  */}
       <div className="container primary-background-colour">
-        {userList.length > 0 ? (
-          <>
-            <h1
-              className="primary-heading"
-              id="page-header"
-              data-cy="test-heading"
-            >
-              {heading}
-            </h1>
-            <div id="home-user-list-container" className="user-list-container">
-              {userList.map((user, index) => (
-                <UserCard
-                  key={index}
-                  user={user}
-                  navigate={props.navigate}
-                ></UserCard>
-              ))}
-            </div>
-          </>
-        ) : (
-          <h1 className="primary-heading">
-            You have no {heading.toLowerCase()}
-          </h1>
-        )}
+        <h1 className="primary-heading" id="page-header" data-cy="test-heading">
+          {heading}
+        </h1>
+        <div id="home-user-list-container" className="user-list-container">
+          {userList.map((user) => (
+            <UserCard user={user} navigate={props.navigate}></UserCard>
+          ))}
+        </div>
       </div>
     </>
   );
