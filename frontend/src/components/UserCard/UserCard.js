@@ -8,7 +8,7 @@ const UserCard = (props) => {
     */
 const goToUserDetail = () => {
     // TODO: Change user id to reflect data from database.
-    props.navigate("/user/id/1")
+    props.navigate("/user/1")
 }
 
 const user = props.user

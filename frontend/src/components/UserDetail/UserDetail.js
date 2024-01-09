@@ -8,6 +8,8 @@ import { faCloudSunRain } from '@fortawesome/free-solid-svg-icons'
 import { faUmbrellaBeach } from '@fortawesome/free-solid-svg-icons'
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
+import { useParams } from "react-router"
+import useGetSingleUser from "../../services/getSingleUser"
 
 const UserDetail = ({navigate}) => {
 /*
@@ -16,8 +18,11 @@ Displays user information and travel preferences.
 */
 
 // State to store user details. 
-    const [user, setUser] = useState(mockUser)
+    // const { userId } = useParams();
 
+    const [user, setUser] = useState(mockUser)
+    const [error, setError] = useState(null)
+    useGetSingleUser(window.localStorage.getItem("token"), setUser, setError);
     const preferences = [
         {
             icon: faCakeCandles,

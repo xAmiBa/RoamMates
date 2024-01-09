@@ -10,24 +10,20 @@ Params:
     @param setError = functions to set list of errors
     @param heading = string - determines the type of view for our user list 
 */
-const useGetUsers = (
-    apiUrl, token, setUsers, setError, heading
-    ) => {
-        useEffect(()=>{
-            // const token = window.localStorage.getItem("token")
-            fetch(apiUrl,
-            {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-            .then(response => response.json())
-            .then(data => setUsers(data.users))
-            .catch((error) => {
-                setError(error)
-            })
-        }, [heading])
- 
+const useGetUsers = (apiUrl, token, setUsers, setError, heading) => {
+  useEffect(() => {
+    // const token = window.localStorage.getItem("token")
+    fetch(apiUrl, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setUsers(data.users))
+      .catch((error) => {
+        setError(error);
+      });
+  }, [heading]);
 };
 
 export default useGetUsers;

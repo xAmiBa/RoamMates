@@ -48,7 +48,7 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/user/id/:id"
+            path="/user/:id"
             element={<UserDetail navigate={useNavigate()} />}
           ></Route>
           <Route
