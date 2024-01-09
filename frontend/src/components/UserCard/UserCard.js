@@ -12,13 +12,16 @@ const UserCard = (props) => {
     Component to display UserCard on UserList view.
     Takes user in props.
     */
-  const goToUserDetail = () => {
-    // TODO: Change user id to reflect data from database.
-    props.navigate("/user/id/1");
-  };
 
   const user = props.user;
-  //TODO: Add link to the 'User Detail view"
+
+  const goToUserDetail = () => {
+    // TODO: Change user id to reflect data from database.
+    props.navigate(`/user/${user.user_id}`);
+  };
+
+  
+
   return (
     <Flip left>
       <div onClick={goToUserDetail} className="user-card">
