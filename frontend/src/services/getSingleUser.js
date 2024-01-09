@@ -13,7 +13,6 @@ Params:
 */
 const useGetSingleUser = (token, setSingleUser, setError) => {
     const userId = useParams();
-    console.log(userId)
 
     useEffect(() => {
     // const token = window.localStorage.getItem("token")
@@ -35,7 +34,7 @@ const useGetSingleUser = (token, setSingleUser, setError) => {
       .catch((error) => {
         setError(error);
       });
-  }, [userId, token, setSingleUser, setError]);
+  }, []);
 };
 
 export default useGetSingleUser;

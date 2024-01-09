@@ -6,12 +6,14 @@ const UserCard = (props) => {
     Component to display UserCard on UserList view.
     Takes user in props.
     */
-const goToUserDetail = () => {
+    const user = props.user
+    const goToUserDetail = () => {
+        props.navigate("/user/" + user.user_id)
+    
     // TODO: Change user id to reflect data from database.
-    props.navigate("/user/1")
+
 }
 
-const user = props.user
 //TODO: Add link to the 'User Detail view"
     return(
         <div onClick={goToUserDetail} className="user-card shadow-effect">

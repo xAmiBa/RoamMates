@@ -55,7 +55,7 @@ Displays user information and travel preferences.
     return(
         <div className="profile-detail-container primary-background-colour">
             <div className="row">
-            <h1 className="secondary-heading">{user.userName}, {user.age}</h1>
+            {/* <h1 className="secondary-heading">{user.profile.username}</h1> */}
             <div className="title ">Travel Buddy Preferences</div>
             </div>
             <div className="row">
@@ -78,7 +78,7 @@ Displays user information and travel preferences.
                 </div>
             </div>
             <div className="row bio-container">
-                    {user.bio}
+                    {/* {user.bio} */}
                     </div>
             
         </div>
