@@ -24,6 +24,7 @@
   transition: 0.3s;
   width: 100%;
   padding-left: 40px;
+  cursor: pointer;
 }
 
 /* When you mouse over the navigation links, change their color */
