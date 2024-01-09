@@ -29,8 +29,7 @@ const useGetSingleUser = (token, setSingleUser, setError) => {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      
+      .then((data) => setSingleUser(data))
       .catch((error) => {
         setError(error);
       });

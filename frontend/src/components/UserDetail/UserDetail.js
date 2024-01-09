@@ -14,6 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
+import { useParams } from "react-router";
+import useGetSingleUser from "../../services/getSingleUser";
 
 const UserDetail = ({ navigate }) => {
   /*
@@ -22,7 +24,14 @@ Displays user information and travel preferences.
 */
 
   // State to store user details.
-  const [user, setUser] = useState(mockUser);
+  const [user, setUser] = useState({
+    preferences: {},
+    profile: {},
+    user_request_status: "",
+  });
+  const [error, setError] = useState(null);
+
+  useGetSingleUser(window.localStorage.getItem("token"), setUser, setError);
 
   const preferences = [
     {
@@ -52,24 +61,23 @@ Displays user information and travel preferences.
     },
   ];
 
-  // TODO: Write fetch function to get user data.
   return (
     <div className="profile-detail">
       <div className="profile-detail-container primary-background-colour">
         <div className="row">
-          <h1 className="secondary-heading">Hi, I'm {user.userName}!</h1>
+          <h1 className="secondary-heading">Hi, I'm {user.profile.name}!</h1>
         </div>
         <div className="row">
           <div className="col">
             <div className="image-container-profile">
-              <img src="avatar.webp" />
+              <img src={user.profile.picture} />
             </div>
           </div>
           <div className="col">
             <div className="row bio-container">
               {/* TODO: customizable component to accept / reject / none */}
             </div>
-            <div className="row bio-container">{user.bio}</div>
+            <div className="row bio-container">{user.profile.bio}</div>
           </div>
         </div>
 
