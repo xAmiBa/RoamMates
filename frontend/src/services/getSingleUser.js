@@ -5,23 +5,20 @@ import { useParams } from "react-router";
 Service to get a single user from API.
 
 Params:
-    @param apiUrl = string - api Endpoint
     @param token = Auth token
     @param setSingleUser = function to set a single users
     @param setError = functions to set list of errors
-    // @param heading = string - determines the type of view for our user list 
 */
 const useGetSingleUser = (token, setSingleUser, setError) => {
-    const userId = useParams();
+  const userId = useParams();
 
-    useEffect(() => {
+  useEffect(() => {
     // const token = window.localStorage.getItem("token")
     if (!userId) {
       setError("UserID is required");
     }
 
     const apiUrl = process.env.REACT_APP_PROFILES_DETAIL_BASE_URL + userId.id;
-    //"/profiles/%{userId}>"
 
     fetch(apiUrl, {
       headers: {
