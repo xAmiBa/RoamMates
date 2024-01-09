@@ -6,8 +6,6 @@ import {
   faMars,
 } from "@fortawesome/free-solid-svg-icons";
 import Flip from "react-reveal/Flip";
-// install react-reveal with legacy-peer-deps as it wasn't uopdated for our react version
-// run: npm i react-reveal --legacy-peer-deps
 
 const UserCard = (props) => {
   /*
@@ -25,9 +23,9 @@ const UserCard = (props) => {
     <Flip left>
       <div onClick={goToUserDetail} className="user-card">
         <div className="image-container">
-          <img src="avatar.webp" />
+          <img src={user.picture} />
           <div className="user-info-left" data-cy="test-UserName-and-age">
-            {user.username} | {user.age}
+            {user.name} | {user.age}
           </div>
           <div className="user-info-right" data-cy="test-gender">
             {user.gender === "Male" ? (
@@ -39,9 +37,6 @@ const UserCard = (props) => {
             )}
           </div>
         </div>
-        {/* I'm deleting user bio as it will be too long to present on the card.
-                    It will be included in the profile */}
-        {/* <p data-cy="test-bio">{user.bio}</p> */}
       </div>
     </Flip>
   );
