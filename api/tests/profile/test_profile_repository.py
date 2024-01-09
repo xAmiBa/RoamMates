@@ -62,3 +62,27 @@ def test_get_profile_by_user_id(db_connection):
         "Male",
         "Test bio Daniel",
     )
+
+def test_profile_updated_with_new_values(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = ProfileRepository(db_connection)
+    new_profile = Profile(
+        2,
+        User(2, "daniel", None, "daniel@gmail.com"),
+        "https://www.treasury.gov.ph/wp-content/uploads/2022/01/male-placeholder-image.jpeg",
+        "Daniel",
+        "24",
+        "Female",
+        "Test bio Daniel",
+    )
+
+    repository.update_profile(new_profile)
+    assert repository.find_by_user_id(2) == Profile(
+        2,
+        User(2, "daniel", None, "daniel@gmail.com"),
+        "https://www.treasury.gov.ph/wp-content/uploads/2022/01/male-placeholder-image.jpeg",
+        "Daniel",
+        "24",
+        "Female",
+        "Test bio Daniel",
+    )

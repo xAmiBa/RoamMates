@@ -38,12 +38,12 @@ class PreferenceRepository:
             )
         return []
 
-
     """
     method interacting with database table 
     if condition update: changing already existing preferences data set
     if condition insert: adding new preferences data set
     """
+
     def setup_preferences(self, preference_object, condition):
         match condition:
             case "update":
