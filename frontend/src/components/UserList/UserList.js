@@ -52,8 +52,8 @@ Children:
           {heading}
         </h1>
         <div id="home-user-list-container" className="user-list-container">
-          {userList.map((user) => (
-            <UserCard user={user} navigate={props.navigate}></UserCard>
+          {userList.map((user, index) => (
+            <UserCard user={user} navigate={props.navigate} key={index}></UserCard>
           ))}
         </div>
       </div>

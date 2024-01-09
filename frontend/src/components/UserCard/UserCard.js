@@ -16,11 +16,8 @@ const UserCard = (props) => {
   const user = props.user;
 
   const goToUserDetail = () => {
-    // TODO: Change user id to reflect data from database.
     props.navigate(`/user/${user.user_id}`);
   };
-
-  
 
   return (
     <Flip left>
