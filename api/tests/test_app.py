@@ -10,7 +10,8 @@ when request to /users/add correct
 """
 
 
-def test_user_signup_success(web_client, test_web_address):
+def test_user_signup_success(web_client, test_web_address, db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
     response = web_client.post(
         f"http://{test_web_address}/users/add",
         json={
@@ -233,7 +234,9 @@ when request to /profiles/user_id
 """
 
 
-def test_profiles_data(web_client, test_web_address):
+def test_profiles_data(web_client, test_web_address, db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+
     token_mock = token_generator(1)
     session_data = {"user_id": 1}
 
@@ -291,7 +294,7 @@ def test_profiles_data_fail(web_client, test_web_address):
 
 """
 Check if server returns OK response when 
-requests to /preferences/new
+requests to /preferences/data
 when user is new
 """
 
@@ -304,8 +307,8 @@ def test_preferences_setup_new_user(web_client, test_web_address):
     with web_client.session_transaction() as sess:
         sess.update(session_data)
 
-    response = web_client.post(
-        f"http://{test_web_address}/preferences/new",
+    response = web_client.put(
+        f"http://{test_web_address}/preferences/data",
         json={
             "age_slot": "[30, 100]",
             "gender": "other",
@@ -322,7 +325,7 @@ def test_preferences_setup_new_user(web_client, test_web_address):
 
 """
 Check if server returns OK response when 
-requests to /preferences/new
+requests to /preferences/data
 when user already exists
 """
 
@@ -335,8 +338,8 @@ def test_preferences_setup_existing_user(web_client, test_web_address):
     with web_client.session_transaction() as sess:
         sess.update(session_data)
 
-    response = web_client.post(
-        f"http://{test_web_address}/preferences/new",
+    response = web_client.put(
+        f"http://{test_web_address}/preferences/data",
         json={
             "age_slot": "[30, 100]",
             "gender": "other",
@@ -353,7 +356,7 @@ def test_preferences_setup_existing_user(web_client, test_web_address):
 
 """
 Check if server returns 401 response when 
-requests to /preferences/new
+requests to /preferences/data
 when user is new
 """
 
@@ -366,8 +369,8 @@ def test_preferences_setup_new_user_fail(web_client, test_web_address):
     with web_client.session_transaction() as sess:
         sess.update(session_data)
 
-    response = web_client.post(
-        f"http://{test_web_address}/preferences/new",
+    response = web_client.put(
+        f"http://{test_web_address}/preferences/data",
         json={
             "age_slot": "[30, 100]",
             "gender": "other",
@@ -384,7 +387,7 @@ def test_preferences_setup_new_user_fail(web_client, test_web_address):
 
 """
 Check if server returns 401 response when 
-requests to /preferences/new
+requests to /preferences/data
 when user already exists
 """
 
@@ -397,8 +400,8 @@ def test_preferences_setup_existing_user_fail(web_client, test_web_address):
     with web_client.session_transaction() as sess:
         sess.update(session_data)
 
-    response = web_client.post(
-        f"http://{test_web_address}/preferences/new",
+    response = web_client.put(
+        f"http://{test_web_address}/preferences/data",
         json={
             "age_slot": "[30, 100]",
             "gender": "other",

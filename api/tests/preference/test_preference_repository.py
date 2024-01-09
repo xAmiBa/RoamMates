@@ -25,7 +25,7 @@ def test_setup_preferences_for_new_user(db_connection):
     new_preferences = Preference(
         None, 3, "[25, 30]", "female", "Africa", "winter", "beach"
     )
-    repository.setup_preferences(new_preferences, "insert")
+    repository.insert_preferences(new_preferences)
     assert repository.find_by_user_id(3) == Preference(
         3, 3, "[25, 30]", "female", "Africa", "winter", "beach"
     )
@@ -37,5 +37,5 @@ def test_setup_preferences_for_existing_user(db_connection):
     new_preferences = Preference(
         1, 1, "[25, 30]", "female", "Africa", "winter", "beach"
     )
-    repository.setup_preferences(new_preferences, "update")
+    repository.update_preferences(new_preferences)
     assert repository.find_by_user_id(1) == new_preferences
