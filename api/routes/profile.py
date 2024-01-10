@@ -79,7 +79,8 @@ def apply_profile_routes(app):
             response = jsonify(
                 {
                     "message": "OK!",
-                    "token": token
+                    "token": token,
+                    "id": user_id,
                 }
             )
             response.status_code = 200
