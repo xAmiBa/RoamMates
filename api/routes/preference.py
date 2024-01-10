@@ -27,6 +27,10 @@ def apply_preference_routes(app):
         token = request.headers["Authorization"][7:]
         user_id = session.get("user_id")
 
+        print("TOKEN BE:", token)
+        print("user_id BE:", user_id)
+        print("TOKEN CHECKER STATUS:", token_checker(token, user_id))
+
         if not token_checker(token, user_id):
             response = jsonify({"message": "Invalid credentials"})
             response.status_code = 401
@@ -53,6 +57,6 @@ def apply_preference_routes(app):
             preferences_repo.insert_preferences(new_preferences)
 
         token = token_generator(user_id)
-        response = jsonify({"message": "OK!", "token": token})
+        response = jsonify({"message": "OK!", "token": token, "user_id": user_id})
         response.status_code = 200
         return response

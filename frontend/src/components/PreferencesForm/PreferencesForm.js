@@ -1,27 +1,47 @@
 import PrimaryButton from "../PrimaryButton/PrimaryButton"
 import setupPreferences from "../../services/setupPreferences";
 import { useState } from "react";
+import "../PreferencesForm/PreferencesFrom.css";
+
+
+// Form works only when user chooses all preferences,
+// otherwise useState should replace values with fetchedValues but it shows undefined.
+// I think it might be async problem
 
 const PreferencesForm = (fetchedValues) => {
-
-    
+    console.log("FETCHED VALUES", fetchedValues.preferences)
 
     // Sets up and inputs ValueState
     const [values, setValues] = useState({
-        age_slot: "",
-        gender: "",
-        continent: "",
-        season: "",
-        category: "",
-    });
+        age_slot: fetchedValues.preferences.age_slot,
+        gender: fetchedValues.preferences.gender,
+        continent: fetchedValues.preferences.continent,
+        season: fetchedValues.preferences.season,
+        category: fetchedValues.preferences.category,
+      });
+
+    const [formError, setFormError] = useState("");
 
     const onChange = (event) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
+        console.log("CHANGE:", event.target.value, event.target.name)
+        setValues({
+          ...values,
+          [event.target.name]: event.target.value === "" ? fetchedValues.preferences[event.target.name] : event.target.value,        });
+      };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const apiPreferencesSetup = process.env.REACT_APP_PREFERENCES_SETUP;
+        console.log("SUBMITED VALUES", values)
+        const apiPreferencesSetupUrl = process.env.REACT_APP_PREFERENCES_SETUP;
+        setupPreferences(
+            `${apiPreferencesSetupUrl}`,
+            values.age_slot,
+            values.gender,
+            values.continent,
+            values.season,
+            values.category,
+            setFormError,
+        );
     };
 
     return (
@@ -30,28 +50,40 @@ const PreferencesForm = (fetchedValues) => {
 
                     <div className="preference-age">
                         <label for="age_slot">Age</label>
-                        <select id="age_slot" name="age_slot">
-                            <option value="current-preference">{fetchedValues.preferences.age_slot}</option>
+                        <select 
+                            id="age_slot" 
+                            name="age_slot" 
+                            onChange={onChange}
+                            value={values.age_slot || fetchedValues.preferences.age_slot}
+                        >
                             <option value="[18, 24]">18-24</option>
                             <option value="[25, 30]">25-30</option>
                             <option value="[30, 100]">30+</option>
                         </select>
-                    </div><br/>
+                    </div>
 
-                    <div className="preference-gender">
+                    <div className="preference-field-container">
                     <label for="gender">Gender</label>
-                        <select id="gender" name="gender">
-                            <option value="current-preference">{fetchedValues.preferences.gender}</option>
+                        <select 
+                            id="gender" 
+                            name="gender"
+                            onChange={onChange}
+                            value={values.gender || fetchedValues.preferences.gender}
+                            >
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="other">Other</option>
                         </select>
                     </div><br/>
 
-                    <div className="prefernce-continent">
+                    <div className="preference-field-container">
                         <label for="continent">Continent</label>
-                        <select id="continent" name="continent">
-                            <option value="current-preference">{fetchedValues.preferences.continent}</option>
+                        <select
+                            id="continent" 
+                            name="continent"
+                            value={values.continent || fetchedValues.preferences.continent}
+                            onChange={onChange}
+                        >
                             <option value="Africa">Africa</option>
                             <option value="Antarctica">Antarctica</option>
                             <option value="Asia">Asia</option>
@@ -62,10 +94,14 @@ const PreferencesForm = (fetchedValues) => {
                         </select>
                     </div><br/>
 
-                    <div className="preference-season">
+                    <div className="preference-field-container">
                         <label for="season">Season</label>
-                        <select id="season" name="season">
-                            <option value="current-preference">{fetchedValues.preferences.season}</option>
+                        <select 
+                            id="season" 
+                            name="season"
+                            value={values.season || fetchedValues.preferences.season}
+                            onChange={onChange}
+                            >
                             <option value="spring">Spring</option>
                             <option value="summer">Summer</option>
                             <option value="autumn">Autumn</option>
@@ -73,10 +109,14 @@ const PreferencesForm = (fetchedValues) => {
                         </select>
                     </div><br/>
 
-                    <div className="preference-category">
+                    <div className="preference-field-container">
                         <label for="category">Category</label>
-                        <select id="category" name="category">
-                            <option value="current-preference">{fetchedValues.preferences.category}</option>
+                        <select 
+                            id="category" 
+                            name="category"
+                            value={values.category || fetchedValues.preferences.category}
+                            onChange={onChange}
+                        >
                             <option value="mountains">Mountains</option>
                             <option value="beach">Beach</option>
                             <option value="resort">Resort</option>

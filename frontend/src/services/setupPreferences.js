@@ -13,11 +13,12 @@ Params:
 */
 
 const setupPreferences = async (apiUrl, age_slot, gender, continent, season, category, setFormError) => {
+    const token = window.localStorage.getItem("token")
     let response = await fetch(apiUrl, {
         method: "put",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": window.localStorage.getItem("token")
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
             age_slot: age_slot,
@@ -25,7 +26,7 @@ const setupPreferences = async (apiUrl, age_slot, gender, continent, season, cat
             continent: continent,
             season: season,
             category: category
-        }),
+        })
     });
 
     if (response.status != 200) {

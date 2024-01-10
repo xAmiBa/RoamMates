@@ -20,4 +20,3 @@ def token_checker(token, user_id_from_session):
     except Exception as e:
         raise ValueError(f"Token not valid: {e}")
     
-
