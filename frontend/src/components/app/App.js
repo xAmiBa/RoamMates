@@ -8,6 +8,7 @@ import { useNavigate, Routes, Route } from "react-router-dom";
 import UserDetail from "../UserDetail/UserDetail";
 
 import AuthLayout from "../AuthLayout/AuthLayout";
+import Settings from "../Settings/Settings";
 
 const App = () => {
   return (
@@ -52,7 +53,7 @@ const App = () => {
           ></Route>
           <Route
             path="/myprofile"
-            element={<UserDetail navigate={useNavigate()} />}
+            element={<Settings navigate={useNavigate()} />}
           ></Route>
         </Route>
       </Routes>

@@ -30,7 +30,7 @@ def apply_auth_routes(app):
             # adds user_id to session to verify tokes later
             session["user_id"] = user.id
             token = token_generator(user.id)
-            response = jsonify({"message": "OK!", "token": token})
+            response = jsonify({"message": "OK!", "token": token, "user_id": user.id})
             response.status_code = 200
         else:
             response = jsonify({"message": "Invalid credentials"})

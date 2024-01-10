@@ -1,0 +1,26 @@
+.settings-form-container {
+    justify-content: start;
+    align-items: start;
+    width: 50%;
+    margin-left: 180px;
+    margin-right: auto;
+    display: flex;
+    align-items: start;
+    box-shadow:
+        rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+        rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    flex-direction: column;
+    padding: 50px;
+    width: 70%;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.setings-container {
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 180px;
+    margin-top: 70px; */
+    align-items: center;
+    z-index: 1;
+}
