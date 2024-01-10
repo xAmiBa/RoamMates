@@ -99,12 +99,12 @@ Displays user information and travel preferences.
           </div>
           <div className="col">
             <div className="row bio-container requests-container">
-              {user.user_request_status === null ? (
+              {user.user_request_status === null && (
                 <>
                   <PrimaryButton text="Accpet" bg="rgb(26, 165, 158)" />
                   <PrimaryButton text="Reject" bg="red" />
                 </>
-              ) : (
+              )} {user.user_request_status === "" &&(
                 <PrimaryButton text="Send Request" bg="rgb(26, 165, 158)" />
               )}
               {user.user_request_status === false && (
