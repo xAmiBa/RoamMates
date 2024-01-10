@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "./UserList.css";
 import UserCard from "../UserCard/UserCard";
-import users from "../../constants/userList";
-import SideBar from "../SideBar/SideBar";
+import useGetUsers from "../../services/getusers";
 
 const UserList = (props) => {
   /*
@@ -14,27 +13,37 @@ Children:
 */
 
   // State that holds list of users.
-  // TODO: Change to empty list
-  const [userList, setUserList] = useState(users);
+  const [userList, setUserList] = useState([]);
+  const [error, setError] = useState(null);
 
   // Variable to control version of the list of users.
   const componentVersion = props.componentVersion;
 
+  let apiUrl;
   // Variable to set the page heading.
   let heading;
   switch (componentVersion) {
     case "home":
       heading = "Find Your Roam Mates!";
+      apiUrl = process.env.REACT_APP_USERS_PROFILES_URL;
       break;
     case "requests":
       heading = "Requests";
+      apiUrl = process.env.REACT_APP_REQUESTS_URL;
       break;
     default:
-      heading = "My Matches";
+      heading = "Matches";
+      apiUrl = process.env.REACT_APP_MATCHES_URL;
       break;
   }
 
-  // TODO: Add API request to change state of the UserList.
+  useGetUsers(
+    apiUrl,
+    window.localStorage.getItem("token"),
+    setUserList,
+    setError,
+    heading
+  );
 
   return (
     <>
@@ -43,8 +52,8 @@ Children:
           {heading}
         </h1>
         <div id="home-user-list-container" className="user-list-container">
-          {userList.map((user) => (
-            <UserCard user={user} navigate={props.navigate}></UserCard>
+          {userList.map((user, index) => (
+            <UserCard user={user} navigate={props.navigate} key={index}></UserCard>
           ))}
         </div>
       </div>

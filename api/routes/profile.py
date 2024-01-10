@@ -94,14 +94,14 @@ def apply_profile_routes(app):
         """
 
         connection = get_flask_database_connection(app)
-        profiles_repo = UserRepository(connection)
+        profiles_repo = ProfileRepository(connection)
         preferences_repo = PreferenceRepository(connection)
         requests_repo = RequestRepository(connection)
 
         token = request.headers["Authorization"][7:]
         session_user_id = session.get("user_id")
 
-        profile_data = profiles_repo.find_by_id(user_id)
+        profile_data = profiles_repo.find_by_user_id(user_id)
         preferences_data = preferences_repo.find_by_user_id(user_id)
         request_data = requests_repo.get_request_status(session_user_id, user_id)
 

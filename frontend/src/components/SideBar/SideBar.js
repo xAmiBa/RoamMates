@@ -9,44 +9,55 @@ import {
   faGear,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-// run: npm i --save @fortawesome/fontawesome-svg-core
-// run: npm i --save @fortawesome/free-solid-svg-icons
-// run: npm i --save @fortawesome/react-fontawesome@latest
+import logout from "../../services/logout";
 
 const SideBar = ({ navigate }) => {
+  /** 
+  Siderbar component for navigation to Home, Matches, Requests, My Profile and Log Out pages.
+  */
   const links = [
     {
       id: 1,
       text: "Home",
-      url: "/",
+      onClick() {
+        navigate("/");
+      },
       icon: faHouse,
       testId: "sidebar-home-link",
     },
     {
       id: 2,
       text: "Matches",
-      url: "/matches",
+      onClick() {
+        navigate("/matches");
+      },
       icon: faSuitcaseRolling,
       testId: "sidebar-matches-link", 
     },
     {
       id: 3,
       text: "Requests",
-      url: "/requests",
+      onClick() {
+        navigate("/requests");
+      },
       icon: faBell,
       testId: "sidebar-requests-link", 
     },
     {
       id: 4,
       text: "My Profile",
-      url: "/myprofile",
+      onClick() {
+        navigate("/myprofile");
+      },
       icon: faGear,
       testId: "sidebar-my-profile-link", 
     },
     {
       id: 5,
       text: "Log Out",
-      url: "#",
+      onClick() {
+        logout(navigate);
+      },
       icon: faRightFromBracket,
       testId: "sidebar-log-out-link", 
     },
@@ -59,10 +70,10 @@ const SideBar = ({ navigate }) => {
         <div className="logo-text">Roam Mates</div>
       </div>
       {links.map((link) => (
-        <div className="side-bar-link">
+        <div className="side-bar-link" key={link.id}>
           {/* <i className={link.icon}/> */}
-          <a href={link.url} data-cy="button-text-content" id={link.testId}>
-            <FontAwesomeIcon icon={link.icon} style={{ marginRight: "15px" }} />
+          <a onClick={link.onClick} key={link.id}  data-cy="button-text-content">
+            <FontAwesomeIcon key={link.id} icon={link.icon} style={{ marginRight: "15px" }}></FontAwesomeIcon>
             {link.text}
           </a>
         </div>

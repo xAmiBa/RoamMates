@@ -17,6 +17,6 @@ describe("UserList", () => {
 
   it("renders User List with correct heading", () => {
     cy.mount(<UserList navigate={navigate} componentVersion="matches" />);
-    cy.get('[data-cy="test-heading"]').should("contain.text", "My Matches");
+    cy.get('[data-cy="test-heading"]').should("contain.text", "Matches");
   });
 });
