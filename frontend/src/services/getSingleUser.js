@@ -7,6 +7,7 @@ Params:
     @param token = Auth token
     @param setSingleUser = function to set a single users
     @param setError = functions to set list of errors
+    @param userId - id of user we want to view.
 */
 const useGetSingleUser = (token, setSingleUser, setError, userId) => {
   useEffect(() => {
