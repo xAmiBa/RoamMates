@@ -7,7 +7,12 @@ from lib.Preference import Preference
 
 
 def apply_preference_routes(app):
-    """Profile Router."""
+    """
+    Profile Router.
+    Method finds preferences by user id.
+    If preferences exist: the update_preferences method is executed
+    If preferences does not exist: the insert_preferences method is executed
+    """
 
     @app.route("/preferences/data", methods=["PUT"])
     def setup_preferences_data():
@@ -18,9 +23,7 @@ def apply_preference_routes(app):
         """
 
         connection = get_flask_database_connection(app)
-        # get data
         data = request.get_json()
-
         token = request.headers["Authorization"][7:]
         user_id = session.get("user_id")
 
@@ -29,18 +32,15 @@ def apply_preference_routes(app):
             response.status_code = 401
             return response
 
-        # get old preferences by user_id
         preferences_repo = PreferenceRepository(connection)
         preferences = preferences_repo.find_by_user_id(user_id)
-        # compare both data and skip None values
+
         if preferences:
             for key in ["age_slot", "gender", "continent", "season", "category"]:
                 setattr(preferences, key, data[key])
-
             preferences_repo.update_preferences(preferences)
 
         else:
-            # create new preferences object
             new_preferences = Preference(
                 None,
                 user_id,
@@ -55,5 +55,4 @@ def apply_preference_routes(app):
         token = token_generator(user_id)
         response = jsonify({"message": "OK!", "token": token})
         response.status_code = 200
-
         return response

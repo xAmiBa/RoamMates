@@ -1,8 +1,6 @@
 from flask import request, jsonify, session
 from token_config import token_checker, token_generator
-import boto3
 import os
-from dotenv import load_dotenv
 from datetime import datetime
 from werkzeug.utils import secure_filename
 
@@ -48,13 +46,15 @@ def apply_profile_routes(app):
             Updated profile data.
             Route: /profiles/data
             Request:  PUT
+
+            This method updates user profile in database. When Image is present,
+            the unique name is created (date, time and filename) and added to database.
+            Image is stored locally in api/static/UPLOADS directory
             """
             connection = get_flask_database_connection(app)
             profile_repo = ProfileRepository(connection)
 
-            # BUG: Data mocked for postman test, uncomment before PR
-            # user_id = session.get("user_id")
-            user_id = 2
+            user_id = session.get("user_id")
             token = request.headers["Authorization"][7:]
             picture = request.files["picture"]
    
@@ -103,8 +103,6 @@ def apply_profile_routes(app):
 
         profile_data = profiles_repo.find_by_id(user_id)
         preferences_data = preferences_repo.find_by_user_id(user_id)
-
-        # request status between for session user and accessed profile
         request_data = requests_repo.get_request_status(session_user_id, user_id)
 
         if token_checker(token, session_user_id):
@@ -128,13 +126,12 @@ def apply_profile_routes(app):
 
 
 
-
-
-
-
-        """        
-        upload image to bucket
-        """        
+        """
+        Draft code with cofiguration of amazon bucket for image storage.        
+        Upload image to bucket.
+        """
+        # import boto3
+        # from dotenv import load_dotenv
         # load_dotenv()
         # s3 = boto3.client(
         #     "s3",

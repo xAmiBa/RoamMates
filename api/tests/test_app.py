@@ -260,12 +260,12 @@ def test_profiles_data(web_client, test_web_address, db_connection):
         "username": "amina",
     }
     assert response.get_json().get("preferences") == {
-        "age_slot": "[30, 100]",
-        "category": "beach",
-        "continent": "Asia",
+        "age_slot": "[18, 24]",
+        "category": "resort",
+        "continent": "North America",
         "gender": "other",
         "id": 1,
-        "season": "summer",
+        "season": "winter",
         "user_id": 1,
     }
     assert response.get_json().get("user_request_status") == ""
@@ -418,10 +418,12 @@ def test_preferences_setup_existing_user_fail(web_client, test_web_address):
     assert response.get_json().get("message") == "Invalid credentials"
 
 
-# """
-# TODO: test
-# """
-
+"""
+Test not working due to inability to mock image data
+Route fully tested in Postman with positive and negative response
+and image successfuly uploaded
+"""
+    
 # def test_profile_update(web_client, test_web_address):
 #     token_mock = token_generator(1)
 #     print(token_mock)
