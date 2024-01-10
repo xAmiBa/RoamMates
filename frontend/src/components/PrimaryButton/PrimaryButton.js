@@ -1,6 +1,6 @@
 import "./PrimaryButton.css";
 
-const PrimaryButton = ({ text, onClick, bg, disabled=false }) => {
+const PrimaryButton = ({ text, onClick, bg, dataTestId, disabled=false }) => {
   /*
     Generic Button component.
 
@@ -15,6 +15,7 @@ const PrimaryButton = ({ text, onClick, bg, disabled=false }) => {
     <button
       className="primary-button secondary-background-colour primary-text-colour"
       data-cy="button-text-content"
+      id={dataTestId}
       onClick={onClick}
       style={{backgroundColor: bg}}
       disabled={disabled}

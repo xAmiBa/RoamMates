@@ -23,6 +23,7 @@ const SideBar = ({ navigate }) => {
         navigate("/");
       },
       icon: faHouse,
+      testId: "sidebar-home-link",
     },
     {
       id: 2,
@@ -31,6 +32,7 @@ const SideBar = ({ navigate }) => {
         navigate("/matches");
       },
       icon: faSuitcaseRolling,
+      testId: "sidebar-matches-link", 
     },
     {
       id: 3,
@@ -39,6 +41,7 @@ const SideBar = ({ navigate }) => {
         navigate("/requests");
       },
       icon: faBell,
+      testId: "sidebar-requests-link", 
     },
     {
       id: 4,
@@ -47,6 +50,7 @@ const SideBar = ({ navigate }) => {
         navigate("/myprofile");
       },
       icon: faGear,
+      testId: "sidebar-my-profile-link", 
     },
     {
       id: 5,
@@ -55,6 +59,7 @@ const SideBar = ({ navigate }) => {
         logout(navigate);
       },
       icon: faRightFromBracket,
+      testId: "sidebar-log-out-link", 
     },
   ];
 

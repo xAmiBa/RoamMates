@@ -101,7 +101,7 @@ const SignUp = ({ navigate }) => {
           />
         ))}
         <div className="button-container">
-          <PrimaryButton text="Sign Up" id="signup-signup-button" />
+          <PrimaryButton text="Sign Up" dataTestId="signup-signup-button"/>
         </div>
         <p>
           <a href="/users/login" id="signup-login-redirect">
