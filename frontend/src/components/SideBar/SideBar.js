@@ -20,30 +20,35 @@ const SideBar = ({ navigate }) => {
       text: "Home",
       url: "/",
       icon: faHouse,
+      testId: "sidebar-home-link",
     },
     {
       id: 2,
       text: "Matches",
       url: "/matches",
       icon: faSuitcaseRolling,
+      testId: "sidebar-matches-link", 
     },
     {
       id: 3,
       text: "Requests",
       url: "/requests",
       icon: faBell,
+      testId: "sidebar-requests-link", 
     },
     {
       id: 4,
       text: "My Profile",
       url: "/myprofile",
       icon: faGear,
+      testId: "sidebar-my-profile-link", 
     },
     {
       id: 5,
       text: "Log Out",
       url: "#",
       icon: faRightFromBracket,
+      testId: "sidebar-log-out-link", 
     },
   ];
 
@@ -56,7 +61,7 @@ const SideBar = ({ navigate }) => {
       {links.map((link) => (
         <div className="side-bar-link">
           {/* <i className={link.icon}/> */}
-          <a href={link.url} data-cy="button-text-content">
+          <a href={link.url} data-cy="button-text-content" id={link.testId}>
             <FontAwesomeIcon icon={link.icon} style={{ marginRight: "15px" }} />
             {link.text}
           </a>

@@ -43,7 +43,7 @@ const Home = ({ navigate }) => {
         <PrimaryButton
           text="Sign Up"
           onClick={navigateToSignUp}
-          id="home-signup-button"
+          dataTestId="home-signup-button"
         />
       </div>
     </div>
