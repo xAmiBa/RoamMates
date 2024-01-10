@@ -11,23 +11,31 @@ Params:
 */
 
 const handleSignup = async (
-    apiUrl, username, email, password, setSignupError, navigate
+  apiUrl,
+  username,
+  email,
+  password,
+  setSignupError,
+  navigate,
 ) => {
+  let response = await fetch(apiUrl, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      username: username,
+      password: password,
+    }),
+  });
 
-    let response = await fetch(apiUrl, {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: email, username: username, password: password }),
-    });
-
-    if (response.status !== 200) {
-        setSignupError("Email already exists.");
-    } else {
-        const data = await response.json();
-        navigate("../users/login")
-    }
-}
+  if (response.status !== 200) {
+    setSignupError("Email already exists.");
+  } else {
+    const data = await response.json();
+    navigate("../users/login");
+  }
+};
 
 export default handleSignup;

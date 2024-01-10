@@ -8,10 +8,7 @@ Params:
     @param setAuthError - funct to change state of Error.
     @param navigate - navigation.
 */
-const handleLogin = async (
-    apiUrl, email, password, setAuthError, navigate
-    ) => {
-
+const handleLogin = async (apiUrl, email, password, setAuthError, navigate) => {
   let response = await fetch(apiUrl, {
     method: "post",
     headers: {

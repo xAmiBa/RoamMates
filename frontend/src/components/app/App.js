@@ -26,7 +26,7 @@ const App = () => {
           element={<SignUp navigate={useNavigate()} />}
         ></Route>
 
-        <Route path="/" element={<AuthLayout navigate={useNavigate()}/>}>
+        <Route path="/" element={<AuthLayout navigate={useNavigate()} />}>
           <Route
             path=""
             element={
