@@ -2,6 +2,7 @@ import UserDetail from "../UserDetail/UserDetail";
 import "../Settings/Settings.css"
 import { useGetSingleUser } from "../../services/getSingleUser";
 import { useState, useEffect } from "react";
+import PrimaryButton from "../PrimaryButton/PrimaryButton";
 
 const Settings = ({ navigate }) => {
     // Sets up and inputs ValueState
@@ -25,7 +26,7 @@ const Settings = ({ navigate }) => {
             .then((response) => response.json())
             .then((data) => setValues(data))
             .catch((error) => {
-            setError(error);
+            setAuthError(error);
             });
         }, [userId]);
 
@@ -47,8 +48,12 @@ const Settings = ({ navigate }) => {
             <div className="settings-form-container">
                 <h2>My Settings</h2> <br/>
                 <div className="profile-settings-container">
+                    {/* TODO:  */}
                 </div>
+
                 <div className="preference-settings-container">
+                <form onSubmit={ useEffect }>
+
                     <div className="preference-age">
                         <label for="age_slot">Age</label>
                         <select id="age_slot" name="age_slot">
@@ -106,6 +111,11 @@ const Settings = ({ navigate }) => {
                             <option value="sport">Sport</option>
                         </select>
                     </div><br/>
+                    <div className="button-container">
+                        <PrimaryButton text="Set up new preferences" id="set-up-button" />
+                    </div>
+                
+                </form>
                 </div>
 
             </div>
