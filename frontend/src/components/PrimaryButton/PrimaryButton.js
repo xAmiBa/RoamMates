@@ -1,12 +1,14 @@
 import "./PrimaryButton.css";
 
-const PrimaryButton = ({ text, onClick, bg }) => {
+const PrimaryButton = ({ text, onClick, bg, disabled=false }) => {
   /*
     Generic Button component.
 
     @Props: 
         - text: button text
         - onClick: function that runs event when the button is clicked
+        - bg: Custom background colour
+        - disabled: boolean set to true if You want to diable button
     */
   const bgColour = bg ? bg : ""
   return (
@@ -15,6 +17,7 @@ const PrimaryButton = ({ text, onClick, bg }) => {
       data-cy="button-text-content"
       onClick={onClick}
       style={{backgroundColor: bg}}
+      disabled={disabled}
     >
       {text}{" "}
     </button>

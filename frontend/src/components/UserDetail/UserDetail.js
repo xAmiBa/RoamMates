@@ -99,8 +99,21 @@ Displays user information and travel preferences.
           </div>
           <div className="col">
             <div className="row bio-container requests-container">
-              <PrimaryButton text="Accpet" bg="rgb(26, 165, 158)"/>
-              <PrimaryButton text = "Reject" bg="red"/>
+              {user.user_request_status === null ? (
+                <>
+                  <PrimaryButton text="Accpet" bg="rgb(26, 165, 158)" />
+                  <PrimaryButton text="Reject" bg="red" />
+                </>
+              ) : (
+                <PrimaryButton text="Send Request" bg="rgb(26, 165, 158)" />
+              )}
+              {user.user_request_status === false && (
+                <PrimaryButton
+                  text="Request rejected"
+                  bg="rgb(26, 165, 158)"
+                  disabled={true}
+                />
+              )}
             </div>
 
             <div className="row bio-container">{user.profile.bio}</div>

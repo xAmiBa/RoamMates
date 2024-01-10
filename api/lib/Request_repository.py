@@ -93,6 +93,7 @@ class RequestRepository:
         if rows == []:
             return ""
         else:
+            
             return rows[0]["status"]
 
 
