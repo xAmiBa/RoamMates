@@ -263,8 +263,7 @@ INSERT INTO preferences (user_id, age_slot, gender, continent, season, category)
 (46, '[30, 100]', 'male', 'Oceania', 'summer', 'resort'),
 (47, '[30, 100]', 'female', 'South America', 'spring', 'nature'),
 (48, '[18, 24]', 'male', 'Oceania', 'autumn', 'resort'),
-(49, '[25, 30]', 'other', 'Africa', 'winter', 'city'),
-(50, '[30, 100]', 'female', 'Asia', 'summer', 'mountains');
+(49, '[25, 30]', 'other', 'Africa', 'winter', 'city');
 
 -- # Write file into database in terminal
 -- run from api dir
