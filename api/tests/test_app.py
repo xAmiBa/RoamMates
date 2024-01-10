@@ -99,24 +99,23 @@ def test_user_data(web_client, test_web_address):
         f"http://{test_web_address}/profiles/data",
         headers={"Authorization": f"Bearer {token_mock}"},
     )
-    print("RESPONSE HEADERS:", response.headers)
-    print("RESPONSE CONTENT:", response.get_data(as_text=True))
+
     assert response.status_code == 200
     assert response.get_json().get("message") == "OK!"
     assert response.get_json().get("users")[0] == {
-        "age": "28",
-        "bio": "Test bio Amina",
-        "gender": "Female",
-        "name": "Amina",
-        "picture": "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg",
-        "user": {
-            "email": "amina@gmail.com",
-            "id": 1,
-            "password": None,
-            "username": "amina",
-        },
-        "user_id": 1,
-    }
+        'age': '25', 
+        'bio': 'Passionate about exploring new cultures and trying local cuisines. Always seeking the next adventure to add to my travel diary. On a mission to visit every continent and experience the diversity our world has to offer.', 
+        'gender': 'female', 
+        'name': 'Amina', 
+        'picture': 'https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg', 
+        'user': {
+            'email': 'amina@gmail.com', 
+            'id': 1, 
+            'password': None, 
+            'username': 'amina'
+            }, 
+            'user_id': 1
+            } 
 
 
 """
@@ -164,19 +163,19 @@ def test_requests_null(web_client, test_web_address):
     assert response.status_code == 200
     assert response.get_json().get("message") == "OK!"
     assert response.get_json().get("users")[0] == {
-        "age": "28",
-        "bio": "Test bio Amina",
-        "gender": "Female",
-        "name": "Amina",
-        "picture": "https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg",
-        "user": {
-            "email": "amina@gmail.com",
-            "id": 1,
-            "password": None,
-            "username": "amina",
-        },
-        "user_id": 1,
-    }
+        'age': '25', 
+        'bio': 'Passionate about exploring new cultures and trying local cuisines. Always seeking the next adventure to add to my travel diary. On a mission to visit every continent and experience the diversity our world has to offer.', 
+        'gender': 'female', 
+        'name': 'Amina', 
+        'picture': 'https://www.echoclinics.nhs.uk/wp-content/uploads/female-placeholder.jpg', 
+        'user': {
+            'email': 'amina@gmail.com', 
+            'id': 1, 
+            'password': None, 
+            'username': 'amina'
+            }, 
+            'user_id': 1
+            } 
 
 
 """

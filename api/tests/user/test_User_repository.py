@@ -3,6 +3,18 @@ from lib.Profile_repository import ProfileRepository
 from lib.User import User
 from lib.Profile import Profile
 
+"""
+Test if all users retrieved
+only first and last user due to length of database
+"""
+
+
+def test_get_all_users(db_connection):
+    db_connection.seed("seeds/roammates_seed.sql")
+    repository = UserRepository(db_connection)
+    assert repository.all()[0] == User(1, "amina", "amina1", "amina@gmail.com")
+    assert repository.all()[-1] == User(50, 'wanderlust_dreaming', 'dreaming789', 'wanderlust_dreaming@example.com')
+    
 
 """
 Test if user by id found
@@ -81,8 +93,14 @@ def test_add_new_user(db_connection):
     new_user = User(None, "test", "testpassword", "testemail")
     user_repo.add(new_user)
 
-    assert user_repo.all()[-1] == User(5, "test", "testpassword", "testemail")
+    assert user_repo.all()[-1] == User(51, "test", "testpassword", "testemail")
 
     assert profile_repo.all()[-1] == Profile(
-        5, User(5, "test", None, "testemail"), None, None, None, None, None
-    )
+        51,
+        User(51, "test", None, "testemail"),
+        None,
+        None,
+        None,
+        None,
+        None
+        )
