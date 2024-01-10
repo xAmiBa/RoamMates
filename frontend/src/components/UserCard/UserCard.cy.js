@@ -1,7 +1,7 @@
 import UserCard from "./UserCard";
 
 const testUser = {
-  username: "test username",
+  name: "test username",
   age: 20,
   gender: "male",
   bio: "test bio",

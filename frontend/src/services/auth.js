@@ -21,6 +21,7 @@ const handleLogin = async (apiUrl, email, password, setAuthError, navigate) => {
     setAuthError("Email or Password is wrong.");
   } else {
     const data = await response.json();
+    window.localStorage.setItem("id", data.user_id);
     window.localStorage.setItem("token", data.token);
     window.localStorage.setItem("id", data.user_id)
     navigate("/");

@@ -10,20 +10,20 @@ Params:
     @param userId - id of user we want to view.
 */
 const useGetSingleUser = (token, setSingleUser, setError, userId) => {
-    useEffect(() => {
+  useEffect(() => {
     const apiUrl = process.env.REACT_APP_PROFILES_DETAIL_BASE_URL + userId;
 
     fetch(apiUrl, {
-        headers: {
+      headers: {
         Authorization: `Bearer ${token}`,
-        },
+      },
     })
-        .then((response) => response.json())
-        .then((data) => setSingleUser(data))
-        .catch((error) => {
+      .then((response) => response.json())
+      .then((data) => setSingleUser(data))
+      .catch((error) => {
         setError(error);
-        });
-    }, [userId]);
+      });
+  }, [userId]);
 };
 
 export default useGetSingleUser;
