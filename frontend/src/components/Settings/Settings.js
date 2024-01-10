@@ -4,6 +4,7 @@ import { useGetSingleUser } from "../../services/getSingleUser";
 import { useState, useEffect } from "react";
 import PrimaryButton from "../PrimaryButton/PrimaryButton";
 import PreferencesForm from "../PreferencesForm/PreferencesForm";
+import FormField from "../FormField/FormField";
 
 const Settings = ({ navigate }) => {
     // Sets up and inputs ValueState
@@ -39,6 +40,14 @@ const Settings = ({ navigate }) => {
                 <h2>My Settings</h2> <br/>
                 <div className="profile-settings-container">
                     {/* TODO:  */}
+                    <form onSubmit={useEffect}>
+                        <div className="profile-bio">
+                            <label for="bio">Bio</label>
+                            <input type="text" id="bio" name ="bio"></input>
+                            <input type="submit" value="submit"></input>
+                        </div> <br/>
+
+                    </form>
                 </div>
                 <PreferencesForm {...values} {...setValues}/>
                 
