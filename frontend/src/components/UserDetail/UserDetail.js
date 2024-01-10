@@ -1,21 +1,17 @@
 import "../app/App.css";
 import "../UserDetail/UserDetail.css";
-import mockUser from "../../constants/mockUser";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEarthEurope } from "@fortawesome/free-solid-svg-icons";
 import { faCakeCandles } from "@fortawesome/free-solid-svg-icons";
 import { faCloudSunRain } from "@fortawesome/free-solid-svg-icons";
 import { faUmbrellaBeach } from "@fortawesome/free-solid-svg-icons";
 import { faVenusMars } from "@fortawesome/free-solid-svg-icons";
-import {
-  faGenderless,
-  faVenus,
-  faMars,
-} from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
-import { useParams } from "react-router";
+
 import useGetSingleUser from "../../services/getSingleUser";
+import { useSetPreferences } from "../../hooks/useSetPreferences";
 
 const UserDetail = ({ navigate }) => {
   /*
@@ -31,33 +27,50 @@ Displays user information and travel preferences.
   });
   const [error, setError] = useState(null);
 
-  useGetSingleUser(window.localStorage.getItem("token"), setUser, setError);
+  //States to hold preferences details
+  const [prefAge, setPrefAge] = useState(0);
+  const [prefGender, setPrefGender] = useState("");
+  const [prefDestination, setPrefDestination] = useState("");
+  const [prefTime, setPrefTime] = useState("");
+  const [prefCat, setPrefCat] = useState("");
 
+  //Get User data from service
+  useGetSingleUser(window.localStorage.getItem("token"), setUser, setError);
+  
+  //Set preferences from custom hook
+  useSetPreferences(
+    user,
+    setPrefAge,
+    setPrefGender,
+    setPrefDestination,
+    setPrefTime,
+    setPrefCat
+  );
   const preferences = [
     {
       icon: faCakeCandles,
       preferenceText: "Age",
-      preferenceValue: 28,
+      preferenceValue: prefAge,
     },
     {
       icon: faVenusMars,
       preferenceText: "Gender",
-      preferenceValue: "Male",
+      preferenceValue: prefGender,
     },
     {
       icon: faEarthEurope,
       preferenceText: "Travel Destination",
-      preferenceValue: "Europe",
+      preferenceValue: prefDestination,
     },
     {
       icon: faCloudSunRain,
       preferenceText: "Time Of Travel",
-      preferenceValue: "Spring",
+      preferenceValue: prefTime,
     },
     {
       icon: faUmbrellaBeach,
       preferenceText: "Holiday Category",
-      preferenceValue: "City Break",
+      preferenceValue: prefCat,
     },
   ];
 
