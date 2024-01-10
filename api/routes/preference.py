@@ -21,7 +21,7 @@ def apply_preference_routes(app):
         Route: /preferences/data
         Request: PUT
         """
-
+        
         connection = get_flask_database_connection(app)
         data = request.get_json()
         token = request.headers["Authorization"][7:]
