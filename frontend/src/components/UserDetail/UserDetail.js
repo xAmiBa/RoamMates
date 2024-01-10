@@ -12,12 +12,17 @@ import { useState } from "react";
 
 import useGetSingleUser from "../../services/getSingleUser";
 import { useSetPreferences } from "../../hooks/useSetPreferences";
+import { useParams } from "react-router";
 
 const UserDetail = ({ navigate }) => {
   /*
 Component to store single user details. 
 Displays user information and travel preferences. 
 */
+
+  const params = useParams();
+
+  const userId = params.id ? params.id : window.localStorage.getItem("id");
 
   // State to store user details.
   const [user, setUser] = useState({
@@ -35,8 +40,13 @@ Displays user information and travel preferences.
   const [prefCat, setPrefCat] = useState("");
 
   //Get User data from service
-  useGetSingleUser(window.localStorage.getItem("token"), setUser, setError);
-  
+  useGetSingleUser(
+    window.localStorage.getItem("token"),
+    setUser,
+    setError,
+    userId
+  );
+
   //Set preferences from custom hook
   useSetPreferences(
     user,
