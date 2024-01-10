@@ -40,3 +40,18 @@ class ProfileRepository:
             row["gender"],
             row["bio"],
         )
+
+    def update_profile(self, profile_object):
+        query = """
+        UPDATE profiles
+        SET picture = %s, name = %s, age = %s, gender = %s, bio = %s
+        WHERE user_id = %s;
+        """
+        self._connection.execute(query, [
+            profile_object.picture,
+            profile_object.name,
+            profile_object.age,
+            profile_object.gender,
+            profile_object.bio,
+            profile_object.user_id
+            ])
