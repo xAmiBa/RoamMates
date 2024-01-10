@@ -88,7 +88,7 @@ class RequestRepository:
     def get_request_status(self, session_user_id, profile_user_id):
         rows = self._connection.execute(
             "SELECT * from REQUESTS WHERE request_from = %s and request_to = %s",
-            [session_user_id, profile_user_id],
+            [profile_user_id, session_user_id,],
         )
         if rows == []:
             return ""

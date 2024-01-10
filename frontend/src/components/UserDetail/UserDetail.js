@@ -24,7 +24,7 @@ Displays user information and travel preferences.
 
   //Sets user Id or gets Our Id if We view Myprofile.
   const userId = params.id ? params.id : window.localStorage.getItem("id");
-  
+
   // State to store user details.
   const [user, setUser] = useState({
     preferences: {},
@@ -98,7 +98,6 @@ Displays user information and travel preferences.
             </div>
           </div>
           <div className="col">
-
             <div className="row bio-container requests-container">
               <PrimaryButton text="Accpet" bg="rgb(26, 165, 158)"/>
               <PrimaryButton text = "Reject" bg="red"/>
