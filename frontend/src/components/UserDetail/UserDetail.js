@@ -24,6 +24,7 @@ Displays user information and travel preferences.
 
   //Sets user Id or gets Our Id if We view Myprofile.
   const userId = params.id ? params.id : window.localStorage.getItem("id");
+  const isMyProfile = userId === window.localStorage.getItem("id");
 
   // State to store user details.
   const [user, setUser] = useState({
@@ -98,23 +99,26 @@ Displays user information and travel preferences.
             </div>
           </div>
           <div className="col">
-            <div className="row bio-container requests-container">
-              {user.user_request_status === null && (
-                <>
-                  <PrimaryButton text="Accpet" bg="rgb(26, 165, 158)" />
-                  <PrimaryButton text="Reject" bg="red" />
-                </>
-              )} {user.user_request_status === "" &&(
-                <PrimaryButton text="Send Request" bg="rgb(26, 165, 158)" />
-              )}
-              {user.user_request_status === false && (
-                <PrimaryButton
-                  text="Request rejected"
-                  bg="rgb(26, 165, 158)"
-                  disabled={true}
-                />
-              )}
-            </div>
+            {!isMyProfile && !user.user_request_status === true && (
+              <div className="row bio-container requests-container">
+                {user.user_request_status === null && (
+                  <>
+                    <PrimaryButton text="Accept" bg="rgb(26, 165, 158)" />
+                    <PrimaryButton text="Reject" bg="red" />
+                  </>
+                )}{" "}
+                {user.user_request_status === "" && (
+                  <PrimaryButton text="Send Request" bg="rgb(26, 165, 158)" />
+                )}
+                {user.user_request_status === false && (
+                  <PrimaryButton
+                    text="Request rejected"
+                    bg="rgb(26, 165, 158)"
+                    disabled={true}
+                  />
+                )}
+              </div>
+            )}
 
             <div className="row bio-container">{user.profile.bio}</div>
           </div>
